@@ -6,7 +6,7 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.logo} />
-      <Text style={styles.title}></Text>
+      <Text style={styles.title}>À L’AISE</Text>
     </View>
   );
 };
