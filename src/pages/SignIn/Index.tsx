@@ -12,6 +12,9 @@ const SignIn = () => {
         <TextInput label="Username" placeholder="Enter your username" />
         <Gap height={16} />
         <TextInput label="Password" placeholder="Enter your password" />
+        <Gap height={24} />
+        <Button label="Sign In" />
+        <Gap height={12} />
       </View>
     </View>
   );
