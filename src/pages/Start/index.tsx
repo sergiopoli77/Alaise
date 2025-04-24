@@ -13,19 +13,15 @@ const Start = () => {
         style={styles.swiper}
         autoplay
         autoplayTimeout={3}
-        showsPagination={false} // Nonaktifkan pagination bawaan Swiper
+        dotStyle={styles.dot}
+        activeDotStyle={styles.activeDot}
+        showsPagination={true} // Nonaktifkan pagination bawaan Swiper
       >
         <Image source={Illustration} style={styles.illustration} />
         <Image source={Illustration2} style={styles.illustration} />
         <Image source={Illustration3} style={styles.illustration} />
       </Swiper>
 
-      {/* Pagination Manual */}
-      <View style={styles.pagination}>
-        <View style={[styles.dot, styles.activeDot]} />
-        <View style={styles.dot} />
-        <View style={styles.dot} />
-      </View>
 
       {/* Bagian Konten */}
       <View style={styles.content}>
