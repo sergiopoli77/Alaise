@@ -22,7 +22,6 @@ const Start = () => {
         <Image source={Illustration3} style={styles.illustration} />
       </Swiper>
 
-
       {/* Bagian Konten */}
       <View style={styles.content}>
         <Text style={styles.title}>Welcome</Text>
@@ -54,20 +53,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   swiper: {
-    height: '100%', // Tinggi swiper
+    height: '100%', 
   },
   illustration: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
-    
   },
   pagination: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -80, // Jarak ke atas agar mendekati gambar
-    marginBottom: 10, // Jarak ke bawah
+    marginTop: -80, 
+    marginBottom: 10, 
   },
   dot: {
     width: 8,
