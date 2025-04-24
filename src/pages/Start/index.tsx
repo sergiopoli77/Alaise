@@ -1,20 +1,34 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
+import Swiper from 'react-native-swiper'; // Import Swiper
 import Illustration from '../../assets/illustration.png';
+import Illustration2 from '../../assets/illustration2.png';
+import Illustration3 from '../../assets/illustration3.png';
 
 const Start = () => {
   return (
     <View style={styles.container}>
-      <Image source={Illustration} style={styles.illustration} />
+      {/* Swiper untuk Gambar */}
+      <Swiper
+        style={styles.swiper}
+        autoplay
+        autoplayTimeout={3}
+        showsPagination={false} // Nonaktifkan pagination bawaan Swiper
+      >
+        <Image source={Illustration} style={styles.illustration} />
+        <Image source={Illustration2} style={styles.illustration} />
+        <Image source={Illustration3} style={styles.illustration} />
+      </Swiper>
+
+      {/* Pagination Manual */}
+      <View style={styles.pagination}>
+        <View style={[styles.dot, styles.activeDot]} />
+        <View style={styles.dot} />
+        <View style={styles.dot} />
+      </View>
 
       {/* Bagian Konten */}
       <View style={styles.content}>
-        <View style={styles.pagination}>
-          <View style={[styles.dot, styles.activeDot]} />
-          <View style={styles.dot} />
-          <View style={styles.dot} />
-        </View>
-
         <Text style={styles.title}>Welcome</Text>
         <Text style={styles.subtitle}>
           Halo, Pelanggan{'\n'}
@@ -22,7 +36,7 @@ const Start = () => {
           Anda! Di À L’AISE
         </Text>
 
-        {/* Tombol Next */}
+        {/* Tombol LOGIN dan SIGN UP */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.loginButton}>
             <Text style={styles.buttonText}>LOGIN</Text>
@@ -42,25 +56,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    width: 412, // Perbesar ukuran lebar logo
-    height: 917, // Perbesar ukuran tinggi logo
   },
-  buttonContainer: {
-    flexDirection: 'row', // Membuat tombol sejajar secara horizontal
-    justifyContent: 'space-between', // Memberikan jarak antara tombol
-    marginTop: 20, // Jarak dari elemen sebelumnya
-    width: '60%', // Lebar container tombol
+  swiper: {
+    height: '100%', // Tinggi swiper
   },
   illustration: {
     width: '100%',
-    height: '55%',
+    height: '100%',
     resizeMode: 'cover',
-    borderBottomRightRadius: 150,
+    
+  },
+  pagination: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -80, // Jarak ke atas agar mendekati gambar
+    marginBottom: 10, // Jarak ke bawah
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+    marginHorizontal: 5,
+  },
+  activeDot: {
+    backgroundColor: '#C25733',
   },
   content: {
     flex: 1,
-    backgroundColor: '#FFFFFF', // Tetap putih untuk konten
-    marginTop: -30, // Tetap gunakan margin untuk menutupi ilustrasi
+    backgroundColor: '#FFFFFF',
     padding: 20,
     alignItems: 'center',
   },
@@ -77,21 +102,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  pagination: {
+  buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#C4C4C4',
-    marginHorizontal: 5,
-  },
-  activeDot: {
-    backgroundColor: '#C25733',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    width: '60%',
   },
   loginButton: {
     backgroundColor: '#C35834',
@@ -116,7 +131,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    fontFamily: 'Poppins-bold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 15,
     color: '#FFFFFF',
     textAlign: 'center',
