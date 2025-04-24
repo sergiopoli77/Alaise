@@ -9,12 +9,9 @@ const SignIn = () => {
       <Header title="Sign In" />
       <View style={styles.contentContainer}>
         <Gap height={26} />
-        <TextInput
-          label="Username"
-          placeholder="Enter your username"
-        />
-       
-       
+        <TextInput label="Username" placeholder="Enter your username" />
+        <Gap height={16} />
+        <TextInput label="Password" placeholder="Enter your password" />
       </View>
     </View>
   );
