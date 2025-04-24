@@ -1,3 +1,4 @@
-import Logo from './Logo.svg';
+import Logo from './Logo.svg'; // Pastikan Anda menggunakan react-native-svg
+import Illustration from './illustration.png'; // Pastikan path ini benar
 
-export {Logo};
+export { Logo, Illustration };
