@@ -12,7 +12,9 @@ const SignIn = () => {
         style={styles.logo}
         resizeMode="contain"
       />
-      <Header title="" />
+      <Header title="À L’AISE
+
+    " />
       <View style={styles.contentContainer}>
         <Gap height={26} />
         <TextInput label="Username" placeholder="Enter your username" />
