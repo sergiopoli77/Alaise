@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 412, // Perbesar ukuran lebar logo
-    height: 917, // Perbesar ukuran tinggi logo
+    width: 412, 
+    height: 917, 
   },
   logo: {
     width: 169, // Perbesar ukuran lebar logo
