@@ -1,11 +1,10 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import Illustration from '../../assets/illustration.png'; 
+import Illustration from '../../assets/illustration.png';
 
 const Start = () => {
   return (
     <View style={styles.container}>
-     
       <Image source={Illustration} style={styles.illustration} />
 
       {/* Bagian Konten */}
@@ -46,10 +45,17 @@ const styles = StyleSheet.create({
     width: 412, // Perbesar ukuran lebar logo
     height: 917, // Perbesar ukuran tinggi logo
   },
+  buttonContainer: {
+    flexDirection: 'row', // Membuat tombol sejajar secara horizontal
+    justifyContent: 'space-between', // Memberikan jarak antara tombol
+    marginTop: 20, // Jarak dari elemen sebelumnya
+    width: '60%', // Lebar container tombol
+  },
   illustration: {
     width: '100%',
     height: '55%',
     resizeMode: 'cover',
+    borderBottomRightRadius: 150,
   },
   content: {
     flex: 1,
@@ -88,33 +94,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#C25733',
   },
   loginButton: {
-    backgroundColor: '#C25733',
+    backgroundColor: '#C35834',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
   },
   signupButton: {
-    backgroundColor: '#C25733',
+    backgroundColor: '#C35834',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
   },
   buttonText: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 14,
+    fontFamily: 'Poppins-bold',
+    fontSize: 15,
     color: '#FFFFFF',
     textAlign: 'center',
   },
- 
- 
 });
