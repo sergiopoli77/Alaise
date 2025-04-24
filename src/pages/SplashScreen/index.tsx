@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Poppins-Bold',
     fontSize: 32,
-    color: '#000000', // Warna teks hitam
+    color: '#C25733', // Warna teks hitam
   },
 });
