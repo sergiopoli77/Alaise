@@ -34,17 +34,30 @@ const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    width: 412, 
+    height: 917, 
+    
   },
   logo: {
     width: 150, // Atur ukuran logo
     height: 150,
     alignSelf: 'center', // Posisikan logo di tengah
-    marginTop: 40, // Tambahkan jarak dari atas
+    marginTop: 34, // Tambahkan jarak dari atas
   },
+  header: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 44,
+    color: '#C25733', // Warna teks hitam
+    textAlign: 'center', // Posisikan teks di tengah
+    marginTop:16,
+    alignItems: 'center', // Posisikan konten di tengah
+  },
+
   contentContainer: {
     backgroundColor: '#FFFFFF',
     marginTop: 24,
     flex: 1,
     paddingHorizontal: 24,
+    
   },
 });
