@@ -46,11 +46,11 @@ export default MenuButton;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#292D32',
+    backgroundColor: '#FFFFFF',
     borderTopStartRadius: 10,
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 16,
+    width: 412,
+    height: 80,
   },
   button: {
     width: 44,
