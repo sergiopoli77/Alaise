@@ -9,55 +9,77 @@ const MenuButton = ({navigation}) => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Home')}>
-        <View>
-          <Image source={Home} />
+        <View style={styles.iconContainer}>
+          <Image source={Home} style={styles.icon} />
+          <Text style={styles.label}>Beranda</Text>
         </View>
       </TouchableOpacity>
       <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Menu')}>
-        <View>
-          <Image source={Menu} />
+        <View style={styles.iconContainer}>
+          <Image source={Menu} style={styles.icon} />
+          <Text style={styles.label}>Menu</Text>
         </View>
       </TouchableOpacity>
       <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Pesanan')}>
-        <View>
-          <Image source={Pesanan} />
+        <View style={styles.iconContainer}>
+          <Image source={Pesanan} style={styles.icon} />
+          <Text style={styles.label}>Pesanan</Text>
         </View>
       </TouchableOpacity>
       <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Profil')}>
-        <View>
-          <Image source={Profil} />
+        <View style={styles.iconContainer}>
+          <Image source={Profil} style={styles.icon} />
+          <Text style={styles.label}>Profil</Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default MenuButton;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
     borderTopStartRadius: 10,
+    borderTopEndRadius: 10,
     flexDirection: 'row',
-    width: 412,
-    height: 70,
+    width: '100%',
+    height: 100, // Tingkatkan height untuk memberi ruang lebih
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   button: {
-    width: 44,
-    height: 44,
+    width: 60,
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  iconContainer: {
+    alignItems: 'center',
+  },
+  icon: {
+    width: 40, // Sesuaikan ukuran ikon agar lebih kecil
+    height: 40, // Sesuaikan ukuran ikon agar lebih kecil
+    resizeMode: 'contain', // Pastikan ikon tidak terpotong
+  },
+  label: {
+    marginTop: 4,
+    fontSize: 12,
+    color: '#000000',
+  },
 });
+
+export default MenuButton;
