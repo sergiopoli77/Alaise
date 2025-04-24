@@ -13,7 +13,7 @@ const MenuButton = ({navigation}) => {
           <Image source={Home} />
         </View>
       </TouchableOpacity>
-      <GapRow width={74} />
+      <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Menu')}>
@@ -21,7 +21,7 @@ const MenuButton = ({navigation}) => {
           <Image source={Menu} />
         </View>
       </TouchableOpacity>
-      <GapRow width={74} />
+      <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Pesanan')}>
@@ -29,7 +29,7 @@ const MenuButton = ({navigation}) => {
           <Image source={Pesanan} />
         </View>
       </TouchableOpacity>
-      <GapRow width={74} />
+      <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Profil')}>
@@ -45,15 +45,19 @@ export default MenuButton;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#FFFFFF',
     borderTopStartRadius: 10,
     flexDirection: 'row',
     width: 412,
-    height: 80,
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   button: {
     width: 44,
     height: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
