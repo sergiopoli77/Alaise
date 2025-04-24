@@ -14,6 +14,9 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Text>Home</Text>
+      <View style={styles.bottomMenu}>
+        <MenuButton />
+      </View>
     </View>
   );
 };
@@ -24,9 +27,15 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F6F6F6',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     width: 412,
     height: 917,
+  },
+  bottomMenu: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    paddingBottom: 20,
   },
 });
