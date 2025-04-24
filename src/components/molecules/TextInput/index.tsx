@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
-    color: '#8D92A3',
+    color: '#000000',
     marginBottom: 6,
   },
   input: {
