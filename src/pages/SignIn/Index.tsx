@@ -10,19 +10,11 @@ const SignIn = () => {
       <View style={styles.contentContainer}>
         <Gap height={26} />
         <TextInput
-          label="Email Address"
-          placeholder="Type your email address"
+          label="Username"
+          placeholder="Enter your username"
         />
-        <Gap height={16} />
-        <TextInput label="Password" placeholder="Type your password" />
-        <Gap height={24} />
-        <Button label="Sign In" />
-        <Gap height={12} />
-        <Button
-          label="Create New Account"
-          color="#8D92A3"
-          textColor="#FFFFFF"
-        />
+       
+       
       </View>
     </View>
   );
