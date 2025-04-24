@@ -10,7 +10,15 @@ const Start = () => {
       
 
       {/* Bagian Konten */}
-      
+      <View style={styles.content}>
+          {/* Indikator Halaman */}
+          <View style={styles.pagination}>
+          <View style={[styles.dot, styles.activeDot]} />
+          <View style={styles.dot} />
+          <View style={styles.dot} />
+        </View>
+     
+      </View>
     </View>
   );
 };
