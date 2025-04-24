@@ -48,7 +48,7 @@ const MenuButton = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    borderTopStartRadius: 10,
+    borderTopStartRadius: 15,
     borderTopEndRadius: 10,
     flexDirection: 'row',
     width: '100%',
