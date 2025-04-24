@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Illustration from '../../assets/illustration.png'; // Pastikan path ini benar
 
@@ -7,17 +7,26 @@ const Start = () => {
     <View style={styles.container}>
       {/* Bagian Ilustrasi */}
       <Image source={Illustration} style={styles.illustration} />
-      
 
       {/* Bagian Konten */}
       <View style={styles.content}>
-          {/* Indikator Halaman */}
-          <View style={styles.pagination}>
+        {/* Indikator Halaman */}
+        <View style={styles.pagination}>
           <View style={[styles.dot, styles.activeDot]} />
           <View style={styles.dot} />
           <View style={styles.dot} />
         </View>
-     
+        <Text style={styles.title}>Welcome</Text>
+        <Text style={styles.subtitle}>
+          Halo, Pelanggan{'\n'}
+          Kami senang bertemu{'\n'}
+          Anda! Di À L’AISE
+        </Text>
+
+        {/* Tombol Next */}
+        <TouchableOpacity style={styles.nextButton}>
+          <Text style={styles.nextText}>next &gt;</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
