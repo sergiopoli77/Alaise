@@ -22,7 +22,9 @@ const SignIn = () => {
         <Gap height={20} />
         <TextInput label="Password" placeholder="Enter your password" />
         <Gap height={24} />
-        <Button label="Sign In" />
+        <View style={styles.signInButton}>
+          <Text style={styles.signInButtonText}>Sign In</Text>
+        </View>
         <Gap height={12} />
       </View>
     </View>
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
     width: 412,
     height: 917,
   },
+
   logo: {
     width: 79, // Atur ukuran logo
     height: 106,
@@ -57,5 +60,23 @@ const styles = StyleSheet.create({
     marginTop: 24,
     flex: 1,
     paddingHorizontal: 24,
+  },
+
+  signInButton: {
+    backgroundColor: '#BB5F09', // Warna tombol
+    paddingVertical: 14, // Padding atas dan bawah
+    borderRadius: 8, // Radius sudut tombol
+    alignItems: 'center', // Posisikan teks di tengah
+    shadowColor: '#000', // Warna bayangan
+    shadowOffset: {width: 0, height: 2}, // Offset bayangan
+    shadowOpacity: 0.25, // Opasitas bayangan
+    shadowRadius: 3.84, // Radius bayangan
+    elevation: 5, // Tinggi bayangan (untuk Android)
+  },
+  signInButtonText: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+    color: '#FFFFFF', // Warna teks
+    textAlign: 'center',
   },
 });

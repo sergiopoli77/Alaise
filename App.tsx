@@ -4,7 +4,7 @@ import Start from './src/pages/Start';
 import SignIn from './src/pages/SignIn/Index';
 
 const App = () => {
-  return <SignIn />;
+  return <SignIn/>;
 };
 
 export default App;
