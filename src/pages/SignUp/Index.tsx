@@ -26,7 +26,22 @@ const SignUp = () => {
         <TextInput label="Email" placeholder="Enter your Email" />
         <Gap height={15} />
 
-       
+        {/* Dropdown untuk Gender */}
+        <Text style={styles.label}>Gender</Text>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={selectedGender}
+            onValueChange={itemValue => setSelectedGender(itemValue)}
+            style={styles.picker}>
+            {selectedGender === '' && (
+              <Picker.Item label="Select your Gender" value="" />
+            )}
+            <Picker.Item label="Male" value="male" />
+            <Picker.Item label="Female" value="female" />
+          </Picker>
+        </View>
+
+     
         <Gap height={12} />
       </View>
     </View>
