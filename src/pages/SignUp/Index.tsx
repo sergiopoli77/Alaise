@@ -45,7 +45,9 @@ const SignUp = () => {
         <TextInput label="Password" placeholder="Enter your password" />
         <Gap height={24} />
 
-        
+        <View style={styles.signInButton}>
+          <Text style={styles.signInButtonText}>Continue</Text>
+        </View>
         <Gap height={12} />
       </View>
     </View>
