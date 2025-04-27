@@ -41,7 +41,11 @@ const SignUp = () => {
           </Picker>
         </View>
 
-     
+        <Gap height={20} />
+        <TextInput label="Password" placeholder="Enter your password" />
+        <Gap height={24} />
+
+        
         <Gap height={12} />
       </View>
     </View>
