@@ -22,7 +22,11 @@ const SignUp = () => {
         <Text style={styles.createAccountText}>Create Account</Text>
         <Gap height={10} />
         <TextInput label="Username" placeholder="Enter your username" />
-    
+        <Gap height={15} />
+        <TextInput label="Email" placeholder="Enter your Email" />
+        <Gap height={15} />
+
+       
         <Gap height={12} />
       </View>
     </View>
