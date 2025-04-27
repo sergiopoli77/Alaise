@@ -18,7 +18,13 @@ const SignUp = () => {
       <Gap height={1} />
       <Text style={styles.header}>À L’AISE</Text>
 
-      
+      <View style={styles.contentContainer}>
+        <Text style={styles.createAccountText}>Create Account</Text>
+        <Gap height={10} />
+        <TextInput label="Username" placeholder="Enter your username" />
+    
+        <Gap height={12} />
+      </View>
     </View>
   );
 };
