@@ -35,7 +35,7 @@ const MenuButton = ({navigation}) => {
       <GapRow width={60} />
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Profil')}>
+        onPress={() => navigation.navigate('logoprofile')}>
         <View style={styles.iconContainer}>
           <Image source={Profil} style={styles.icon} />
           <Text style={styles.label}>Profil</Text>

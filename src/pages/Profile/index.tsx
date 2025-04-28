@@ -3,12 +3,15 @@ import React from 'react';
 import HeaderProfile from '../../components/molecules/HeaderProfile';
 import ProfileCard from '../../components/molecules/ProfileCards';
 import Gap from '../../components/atoms/Gap';
+import MenuButton from '../../components/molecules/MenuButton';
+
 
 const Profile = () => {
   return (
     <View style={styles.page}>
       <HeaderProfile />
-      <ProfileCard name="Sergio Poli" />
+      <ProfileCard name="Brevv" />
+      <MenuButton />
     </View>
   );
 };
