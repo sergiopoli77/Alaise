@@ -52,14 +52,15 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 10,
     flexDirection: 'row',
     width: '100%',
-    height: 100, // Tingkatkan height untuk memberi ruang lebih
+    height: 100, // Increase height for more space
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
     position: 'absolute',
-    bottom: 0,
+    bottom: 0, // Ensures it stays at the bottom
     left: 0,
     right: 0,
+    zIndex: 999, // Makes sure it's on top of other elements
   },
   button: {
     width: 60,
@@ -71,9 +72,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: 40, // Sesuaikan ukuran ikon agar lebih kecil
-    height: 40, // Sesuaikan ukuran ikon agar lebih kecil
-    resizeMode: 'contain', // Pastikan ikon tidak terpotong
+    width: 40, // Icon size
+    height: 40, // Icon size
+    resizeMode: 'contain',
   },
   label: {
     marginTop: 4,

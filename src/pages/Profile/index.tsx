@@ -1,11 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import React from 'react';
 import HeaderProfile from '../../components/molecules/HeaderProfile';
+import ProfileCard from '../../components/molecules/ProfileCards';
+import Gap from '../../components/atoms/Gap';
 
 const Profile = () => {
   return (
     <View style={styles.page}>
       <HeaderProfile />
+      <ProfileCard name="Sergio Poli" />
     </View>
   );
 };
@@ -17,8 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F6F6F6',
   },
-  menuWrapper: {
-    marginTop: 24,
-    marginHorizontal: 24,
+  container: {
+    flex: 1,
   },
 });
