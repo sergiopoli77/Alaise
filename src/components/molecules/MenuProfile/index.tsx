@@ -1,10 +1,9 @@
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const MenuProfile = () => {
   // Data menu
-  const menu = [
+  const menuItems = [
     "Profile Saya",
     "Pengaturan Bahasa", 
     "Tentang Kami",
@@ -13,13 +12,13 @@ const MenuProfile = () => {
 
   return (
     <View style={styles.container}>
-      {menu.map((menu, index) => (
-        <View key={menu}>
+      {menuItems.map((item, index) => (
+        <View key={item}>
           <TouchableOpacity style={styles.menuItem}>
-            <Text style={styles.text}>{menu}</Text>
-            <Icon name="chevron-forward" size={20} color="#888" />
+            <Text style={styles.menuText}>{item}</Text>
+            <Text style={styles.arrowIcon}>{'>'}</Text>
           </TouchableOpacity>
-          {index !== menu.length - 1 && (
+          {index !== menuItems.length - 1 && (
             <View style={styles.divider} />
           )}
         </View>
@@ -49,14 +48,22 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
   },
-  text: {
+  menuText: {
     fontSize: 16,
     color: '#333',
     fontFamily: 'Poppins-Medium',
+    flex: 1,
   },
   divider: {
     height: 1,
     backgroundColor: '#f0f0f0',
     marginHorizontal: 20,
+  },
+  arrowIcon: {
+    color: '#888',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    transform: [{ scaleY: 1.5 }],
   },
 });
