@@ -8,7 +8,7 @@ import PengaturanBahasa from './src/components/molecules/MenuProfile/PengaturanB
 import pengaturan from './src/components/molecules/MenuProfile/Pengaturan';
 
 const App = () => {
-  return <ProfileSaya />;
+  return <TentangKami />;
 };
 
 export default App;
