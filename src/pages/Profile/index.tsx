@@ -5,6 +5,7 @@ import ProfileCard from '../../components/molecules/ProfileCards';
 import Gap from '../../components/atoms/Gap';
 import MenuButton from '../../components/molecules/MenuButton';
 import MenuProfile from '../../components/molecules/MenuProfile';
+import Header from '../../components/molecules/Header';
 
 const Profile = () => {
   return (
@@ -13,6 +14,7 @@ const Profile = () => {
       <ProfileCard name="Brevv" />
       <Gap height={130} />
       <MenuProfile />
+      <Gap height={24} />
       <MenuButton />
     </View>
   );

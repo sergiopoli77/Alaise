@@ -1,9 +1,20 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 
-const Header = ({title}) => {
+const Header = ({ title, onPress }) => {
   return (
     <View style={styles.container}>
+      <TouchableOpacity 
+        onPress={onPress} 
+        style={styles.backButton}
+        activeOpacity={0.7} // Efek saat ditekan
+      >
+        <Image 
+          source={require('../../../assets/icon/back.png')} // Pastikan file ada di folder assets
+          style={styles.icon}
+        />
+      </TouchableOpacity>
+      
       <Text style={styles.title}>{title}</Text>
     </View>
   );
@@ -13,12 +24,36 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 24,
-    paddingVertical: 38,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
     backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    
+  },
+  backButton: {
+    padding: 8,
+    marginRight: 16,
+  },
+  icon: {
+    width: 10,
+    height: 10,
+    resizeMode: 'contain',
+    tintColor: '#000000', // Optional: ubah warna icon
   },
   title: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 22,
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#000000',
+    textAlign: 'center',
+    marginRight: 40, // Kompensasi posisi tombol back
   },
 });

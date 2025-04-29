@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#FFFFFF',
     marginHorizontal: 0,
-    padding: 15,
+    padding: 20,
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
