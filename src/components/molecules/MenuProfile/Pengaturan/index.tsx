@@ -1,36 +1,86 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import Header from '../../Header';
+import MenuButton from '../../MenuButton';
 
 const Pengaturan = () => {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.backButton}>{'<'} Kembali</Text>
-      </TouchableOpacity>
-      <Text style={styles.title}>Pengaturan</Text>
-      {/* Konten desain menyusul */}
+      <Header title="Pengaturan" />
+      
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        {/* Section Informasi */}
+        <View style={styles.sectionRow}>
+          <Text style={styles.sectionTitle}>Informasi</Text>
+          <Text style={styles.versionText}>Version 1.0</Text>
+        </View>
+
+        <View style={styles.divider} />
+
+        {/* Tombol Logout */}
+        <TouchableOpacity style={styles.logoutButton} activeOpacity={0.7}>
+          <Image
+            source={require('../../../../assets/icon/Logout.png')}
+            style={styles.logoutIcon}
+          />
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+      </ScrollView>
+
+      <MenuButton />
     </View>
   );
 };
 
-export default Pengaturan;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F6F6F6',
-    padding: 20,
+    backgroundColor: '#FFFFFF',
   },
-  backButton: {
-    fontSize: 16,
-    color: '#FF6200',
-    marginBottom: 20,
+  contentContainer: {
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    paddingBottom: 80,
   },
-  title: {
-    fontSize: 24,
+  sectionRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 16,
+  },
+  sectionTitle: {
+    fontSize: 15,
+    fontFamily: 'Poppins-medium',
+    color: 'black',
     fontWeight: 'bold',
   },
+  versionText: {
+    fontSize: 14,
+    fontFamily: 'poppins-medium',
+    color: '#666666',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#F0F0F0',
+    marginVertical: -13, // Jarak lebih rapat
+  },
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 16,
+    marginTop: 8, // Jarak lebih rapat dari divider
+  },
+  logoutIcon: {
+    width: 15,
+    height: 15,
+    marginRight: 16,
+    tintColor: '#000000', // Warna hitam
+  },
+  logoutText: {
+    fontSize: 15,
+    fontFamily: 'Poppins-Medium',
+    color: '#000000', // Warna hitam
+  },
 });
+
+export default Pengaturan;
