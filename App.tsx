@@ -6,9 +6,11 @@ import TentangKami from './src/components/molecules/MenuProfile/TentangKami';
 import { ScreenStackHeaderSubview } from 'react-native-screens';
 import PengaturanBahasa from './src/components/molecules/MenuProfile/PengaturanBahasa';
 import Pengaturan from './src/components/molecules/MenuProfile/Pengaturan';
+import Pesanan from './src/pages/Pesanan'
+import DetailPesanan from './src/pages/Pesanan/DetailPesanan'
 
 const App = () => {
-  return <Pengaturan />;
+  return <Pesanan />;
 };
 
 export default App;

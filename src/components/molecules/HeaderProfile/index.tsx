@@ -1,12 +1,17 @@
 import { StyleSheet, View, Image } from 'react-native';
 import React from 'react';
 
-const HeaderProfile = () => {
+const HeaderProfile = ({ borderright = 0, borderleft = 0 }) => {
   return (
-    <View style={styles.container}>
-      {/* Icon on the right */}
+    <View style={[
+      styles.container,
+      {
+        borderBottomRightRadius: borderright,
+        borderBottomLeftRadius: borderleft,
+      }
+    ]}>
       <Image
-        source={require('../../../assets/icon/logo.png')} // Replace with your icon path
+        source={require('../../../assets/icon/logo.png')}
         style={styles.icon}
       />
     </View>
@@ -19,15 +24,15 @@ const styles = StyleSheet.create({
   container: {
     height: 150,
     backgroundColor: '#F9E7DD',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    position: 'relative', // So that the icon can be positioned absolutely
+    position: 'relative',
+    overflow: 'hidden', // INI penting agar radius bekerja
   },
   icon: {
     position: 'absolute',
-    right: 25, // Adjust the distance from the right edge
-    top: 0, // Adjust the vertical position if needed
-    width: 120, // Adjust the width of the icon
-    height: 150, // Adjust the height of the icon
+    right: 25,
+    top: 0,
+    width: 120,
+    height: 150,
+    resizeMode: 'contain',
   },
 });

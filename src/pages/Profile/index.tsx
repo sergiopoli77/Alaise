@@ -10,7 +10,7 @@ import Header from '../../components/molecules/Header';
 const Profile = () => {
   return (
     <View style={styles.page}>
-      <HeaderProfile />
+      <HeaderProfile borderright={30} borderleft={30} />
       <ProfileCard name="Brevv" />
       <Gap height={130} />
       <MenuProfile />
