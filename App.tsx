@@ -10,7 +10,7 @@ import Pesanan from './src/pages/Pesanan'
 import DetailPesanan from './src/pages/Pesanan/DetailPesanan'
 
 const App = () => {
-  return <Pesanan />;
+  return <DetailPesanan />;
 };
 
 export default App;
