@@ -13,19 +13,19 @@ import {Slider1} from '../../assets/images';
 const Home = () => {
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {/* Slider Section */}
-        <View style={styles.sliderContainer}>
-          <Image source={Slider1} style={styles.sliderImage} />
-          <View style={styles.sliderTextContainer}>
-          </View>
-          <View style={styles.pagination}>
-            <View style={[styles.dot, styles.activeDot]} />
-            <View style={styles.dot} />
-            <View style={styles.dot} />
-          </View>
+      {/* Slider Section */}
+      <View>
+        <Image source={Slider1} style={styles.sliderImage} />
+        <View style={styles.sliderTextContainer}>
         </View>
+        <View style={styles.pagination}>
+          <View style={[styles.dot, styles.activeDot]} />
+          <View style={styles.dot} />
+          <View style={styles.dot} />
+        </View>
+      </View>
 
+      <ScrollView>
         {/* Content Section */}
         <View style={styles.content}>
           <View style={styles.card}>
@@ -54,25 +54,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    width: 412,
-    height: 917,
-  },
-  sliderContainer: {
-    alignItems: 'center',
-    marginTop: 20,
-    paddingHorizontal: 16,
-    position: 'relative', // Untuk menempatkan teks di atas gambar
   },
   sliderImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 10,
+    width: '100%', // Gambar memenuhi lebar layar
+    height: 250, // Tinggi gambar
     resizeMode: 'cover',
   },
   sliderTextContainer: {
     position: 'absolute',
     top: 20, // Posisi teks di atas gambar
     alignItems: 'center',
+    width: '100%', // Pastikan teks berada di tengah
   },
   sliderTitle: {
     fontSize: 24,
@@ -95,7 +87,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignSelf: 'center',
   },
   dot: {
     width: 8,
