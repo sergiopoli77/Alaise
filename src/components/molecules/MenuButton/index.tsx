@@ -11,7 +11,7 @@ const MenuButton = ({navigation}) => {
           onPress={() => navigation.navigate('Home')}>
           <View style={styles.iconContainer}>
             <Image source={Home} style={styles.icon} />
-            <Text style={styles.label}>Beranda</Text>
+            <Text style={[styles.label, styles.activeLabel]}>Beranda</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -19,7 +19,7 @@ const MenuButton = ({navigation}) => {
           onPress={() => navigation.navigate('Menu')}>
           <View style={styles.iconContainer}>
             <Image source={Menu} style={styles.icon} />
-            <Text style={styles.label}>Menu</Text>
+            <Text style={[styles.label, styles.labelbaru]}>Menu</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -27,7 +27,7 @@ const MenuButton = ({navigation}) => {
           onPress={() => navigation.navigate('Pesanan')}>
           <View style={styles.iconContainer}>
             <Image source={Pesanan} style={styles.icon} />
-            <Text style={styles.label}>Pesanan</Text>
+            <Text style={[styles.label, styles.labelbaru]}>Pesanan</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -35,7 +35,7 @@ const MenuButton = ({navigation}) => {
           onPress={() => navigation.navigate('Profil')}>
           <View style={styles.iconContainer}>
             <Image source={Profil} style={styles.icon} />
-            <Text style={styles.label}>Profil</Text>
+            <Text style={[styles.label, styles.labelbaru]}>Profil</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -79,8 +79,15 @@ const styles = StyleSheet.create({
   },
   label: {
     marginTop: 4,
-    fontSize: 14,
+    fontSize: 12,
     color: '#000000',
+    fontFamily: 'Poppins-Regular',
+  },
+  activeLabel: {
+    color: '#DE8F5F', // Warna coklat untuk teks "Beranda"
+  },
+  labelbaru: {
+    color: '#AAAAAA', // Warna coklat untuk teks "Beranda"
   },
   
 });
