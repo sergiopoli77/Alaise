@@ -22,10 +22,13 @@ const Home = () => {
         {/* Content Section */}
         <View style={styles.content}>
           <View style={styles.card}>
-            <Text>Content 1</Text>
+            <Text>Conten 1 Profile</Text>
           </View>
           <View style={styles.card}>
-            <Text>Content 2</Text>
+            <Text>Content 2 Fitur</Text>
+          </View>
+          <View style={styles.card}>
+            <Text>Content 3 about Alaise</Text>
           </View>
         </View>
       </ScrollView>
