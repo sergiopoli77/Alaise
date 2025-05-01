@@ -16,8 +16,6 @@ const Home = () => {
       {/* Slider Section */}
       <View>
         <Image source={Slider1} style={styles.sliderImage} />
-        <View style={styles.sliderTextContainer}>
-        </View>
         <View style={styles.pagination}>
           <View style={[styles.dot, styles.activeDot]} />
           <View style={styles.dot} />
@@ -57,45 +55,27 @@ const styles = StyleSheet.create({
   },
   sliderImage: {
     width: '100%', // Gambar memenuhi lebar layar
-    height: 250, // Tinggi gambar
+    height: 265, // Tinggi gambar
+    backgroundColor: '#FFFFFF',
     resizeMode: 'cover',
-  },
-  sliderTextContainer: {
-    position: 'absolute',
-    top: 20, // Posisi teks di atas gambar
-    alignItems: 'center',
-    width: '100%', // Pastikan teks berada di tengah
-  },
-  sliderTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    fontFamily: 'Poppins-Bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)', // Tambahkan bayangan teks
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 4,
-  },
-  sliderSubtitle: {
-    fontSize: 18,
-    color: '#FFFFFF',
-    fontFamily: 'Poppins-Regular',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)', // Tambahkan bayangan teks
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 4,
+    borderBottomLeftRadius: 27, // Border radius untuk sudut kiri bawah
+    borderBottomRightRadius: 27, // Border radius untuk sudut kanan bawah
   },
   pagination: {
     position: 'absolute',
     bottom: 10,
     flexDirection: 'row',
-    alignSelf: 'center',
+    alignSelf: 'flex-end', // Pindahkan ke kanan
+    
   },
   dot: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     borderRadius: 4,
     backgroundColor: '#FFFFFF',
     marginHorizontal: 4,
     opacity: 0.5,
+    marginRight: 20
   },
   activeDot: {
     opacity: 1,
