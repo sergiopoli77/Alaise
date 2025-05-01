@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginHorizontal: 4,
     opacity: 0.5,
-    marginRight: 20
+    marginRight: 20,
+    marginBottom: 20
   },
   activeDot: {
     opacity: 1,
