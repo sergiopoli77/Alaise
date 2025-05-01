@@ -10,19 +10,26 @@ import React from 'react';
 import {MenuButton} from '../../components/molecules';
 import {Slider1} from '../../assets/images';
 
-
 const Home = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
+        {/* Slider Section */}
         <View style={styles.sliderContainer}>
-          
+          <Image source={Slider1} style={styles.sliderImage} />
+          <View style={styles.sliderTextContainer}>
+          </View>
+          <View style={styles.pagination}>
+            <View style={[styles.dot, styles.activeDot]} />
+            <View style={styles.dot} />
+            <View style={styles.dot} />
+          </View>
         </View>
 
         {/* Content Section */}
         <View style={styles.content}>
           <View style={styles.card}>
-            <Text>Conten 1 Profile</Text>
+            <Text>Content 1 Profile</Text>
           </View>
           <View style={styles.card}>
             <Text>Content 2 Fitur</Text>
@@ -45,32 +52,61 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F6F6F6',
     flex: 1,
+    backgroundColor: '#FFFFFF',
+    width: 412,
+    height: 917,
   },
-  slidercontainer: {
+  sliderContainer: {
     alignItems: 'center',
     marginTop: 20,
     paddingHorizontal: 16,
+    position: 'relative', // Untuk menempatkan teks di atas gambar
   },
-  bestSellerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000000',
-    fontFamily: 'Poppins-Bold',
-  },
-  bestSellerImage: {
-    width: '90%',
+  sliderImage: {
+    width: '100%',
     height: 200,
     borderRadius: 10,
-    marginTop: 10,
+    resizeMode: 'cover',
   },
-  dishName: {
+  sliderTextContainer: {
+    position: 'absolute',
+    top: 20, // Posisi teks di atas gambar
+    alignItems: 'center',
+  },
+  sliderTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily: 'Poppins-Bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)', // Tambahkan bayangan teks
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 4,
+  },
+  sliderSubtitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#C67C4E',
+    color: '#FFFFFF',
     fontFamily: 'Poppins-Regular',
-    marginTop: 8,
+    textShadowColor: 'rgba(0, 0, 0, 0.5)', // Tambahkan bayangan teks
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 4,
+  },
+  pagination: {
+    position: 'absolute',
+    bottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#FFFFFF',
+    marginHorizontal: 4,
+    opacity: 0.5,
+  },
+  activeDot: {
+    opacity: 1,
   },
   content: {
     marginTop: 20,

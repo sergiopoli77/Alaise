@@ -1,3 +1,3 @@
-import Slider1 from 'Katsu_Slider.png';
+import Slider1 from './KatsuSlider.png';
 
 export {Slider1};
