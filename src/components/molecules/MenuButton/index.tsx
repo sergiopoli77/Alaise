@@ -1,46 +1,44 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import {GapRow} from '../../atoms';
 import {Home, Pesanan, Menu, Profil} from '../../../assets/icon';
 
 const MenuButton = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
-        <View style={styles.iconContainer}>
-          <Image source={Home} style={styles.icon} />
-          <Text style={styles.label}>Beranda</Text>
-        </View>
-      </TouchableOpacity>
-      <GapRow width={60} />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Menu')}>
-        <View style={styles.iconContainer}>
-          <Image source={Menu} style={styles.icon} />
-          <Text style={styles.label}>Menu</Text>
-        </View>
-      </TouchableOpacity>
-      <GapRow width={60} />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Pesanan')}>
-        <View style={styles.iconContainer}>
-          <Image source={Pesanan} style={styles.icon} />
-          <Text style={styles.label}>Pesanan</Text>
-        </View>
-      </TouchableOpacity>
-      <GapRow width={60} />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Profil')}>
-        <View style={styles.iconContainer}>
-          <Image source={Profil} style={styles.icon} />
-          <Text style={styles.label}>Profil</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.wrapper}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}>
+          <View style={styles.iconContainer}>
+            <Image source={Home} style={styles.icon} />
+            <Text style={styles.label}>Beranda</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Menu')}>
+          <View style={styles.iconContainer}>
+            <Image source={Menu} style={styles.icon} />
+            <Text style={styles.label}>Menu</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Pesanan')}>
+          <View style={styles.iconContainer}>
+            <Image source={Pesanan} style={styles.icon} />
+            <Text style={styles.label}>Pesanan</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Profil')}>
+          <View style={styles.iconContainer}>
+            <Image source={Profil} style={styles.icon} />
+            <Text style={styles.label}>Profil</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -50,16 +48,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopStartRadius: 15,
     borderTopEndRadius: 10,
-    flexDirection: 'row',
     width: '100%',
-    height: 100, // Tingkatkan height untuk memberi ruang lebih
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
+    height: 100,
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  wrapper: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    height: '100%',
+    marginHorizontal: -30
   },
   button: {
     width: 60,
@@ -71,15 +73,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: 40, // Sesuaikan ukuran ikon agar lebih kecil
-    height: 40, // Sesuaikan ukuran ikon agar lebih kecil
-    resizeMode: 'contain', // Pastikan ikon tidak terpotong
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
   },
   label: {
     marginTop: 4,
-    fontSize: 12,
+    fontSize: 14,
     color: '#000000',
   },
+  
 });
 
 export default MenuButton;
