@@ -39,6 +39,7 @@ const Home = () => {
               </View>
             </View>
           </View>
+
           <View style={styles.secondcard}>
           <View style={styles.iconRow}>
             <View style={styles.iconContainer}>
@@ -179,6 +180,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 16,
     width: width - 32,
+    marginTop: 24,
   },
   iconRow: {
     flexDirection: 'row',
