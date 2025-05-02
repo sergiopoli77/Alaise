@@ -31,7 +31,10 @@ const Home = () => {
           <View style={[styles.card, styles.firstCard]}>
             <View style={styles.cardHeader}>
               <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
-              <Image source={Qr} style={styles.qrIcon} />
+              <View style={styles.qrContainer}>
+                <Image source={Qr} style={styles.qrIcon} />
+                <Text style={styles.qrText}>QR</Text>
+              </View>
             </View>
           </View>
           <View style={styles.card}>
@@ -118,6 +121,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', // Space between text and icon
     alignItems: 'center', // Align items vertically
   },
+  qrContainer: {
+    flexDirection: 'row', // Align QR icon and text horizontally
+    alignItems: 'center', // Center vertically
+  },
+  qrIcon: {
+    width: 54,
+    height: 54,
+    marginRight: 8, // Add spacing between QR icon and text
+  },
+  qrText: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#000000',
+    fontFamily: 'Poppins-Bold'
+  },
   cardTitle: {
     fontSize: 16,
     fontWeight: '600',
@@ -125,11 +143,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     marginLeft: 10,
     marginTop: 10,
-  },
-  qrIcon: {
-    width: 54,
-    height: 54,
-    marginRight: 30,
   },
   cardText: {
     fontSize: 14,
