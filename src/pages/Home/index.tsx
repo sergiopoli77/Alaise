@@ -52,7 +52,7 @@ const Home = () => {
           </View>
           <View style={styles.iconRow}>
             <View style={styles.iconContainerColumn}>
-
+              <Image source={foods} style={styles.iconImage} />
               <Text style={styles.iconText}>Foods</Text>
             </View>
             <View style={styles.iconContainerColumn}>
