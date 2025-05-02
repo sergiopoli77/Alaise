@@ -46,6 +46,7 @@ const Home = () => {
               <Text style={styles.iconTextRight}>Pickup</Text>
             </View>
             <View style={styles.iconContainer}>
+              <Image source={takeaway} style={styles.iconImage} />
               <Text style={styles.iconTextRight}>Takeaway</Text>
             </View>
           </View>
