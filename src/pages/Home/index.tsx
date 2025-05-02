@@ -55,8 +55,14 @@ const Home = () => {
 
               <Text style={styles.iconText}>Foods</Text>
             </View>
-      
+            <View style={styles.iconContainerColumn}>
 
+              <Text style={styles.iconText}>Drinks</Text>
+            </View>
+            <View style={styles.iconContainerColumn}>
+ 
+              <Text style={styles.iconText}>Pastries</Text>
+            </View>
           </View>
         </View>
           <View style={styles.card}>
