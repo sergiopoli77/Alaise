@@ -10,7 +10,9 @@ import {
 import React from 'react';
 import {MenuButton} from '../../components/molecules';
 import {Slider1} from '../../assets/images';
-import {Qr} from '../../assets/icon';
+import {Qr,pickup,takeaway,foods,drinks,pastries} from '../../assets/icon';
+
+
 
 const {width} = Dimensions.get('window');
 
@@ -37,9 +39,20 @@ const Home = () => {
               </View>
             </View>
           </View>
-          <View style={styles.card}>
-            <Text style={styles.cardText}>Content 2 Fitur</Text>
+          <View style={styles.secondcard}>
+          <View style={styles.iconRow}>
+            <View style={styles.iconContainer}>
+
+              <Text style={styles.iconTextRight}>Pickup</Text>
+            </View>
+            
           </View>
+          <View style={styles.iconRow}>
+          
+      
+
+          </View>
+        </View>
           <View style={styles.card}>
             <Text style={styles.cardText}>Content 3 about Alaise</Text>
           </View>
@@ -134,7 +147,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: '#000000',
-    fontFamily: 'Poppins-Bold'
+    fontFamily: 'Poppins-Bold',
   },
   cardTitle: {
     fontSize: 16,
@@ -142,11 +155,48 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontFamily: 'Poppins-Regular',
     marginLeft: 10,
-    marginTop: 10,
+    marginTop: -2,
   },
   cardText: {
     fontSize: 14,
     color: '#666666',
+  },
+  secondcard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    padding: 20,
+    marginBottom: 16,
+    width: width - 32,
+  },
+  iconRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 16,
+  },
+  iconContainer: {
+    flexDirection: 'row', // Atur ikon dan teks secara horizontal
+    alignItems: 'center',
+  },
+  iconContainerColumn: {
+    alignItems: 'center', // Untuk ikon dan teks vertikal
+    marginTop: 10, // Spasi antara ikon dan teks
+  },
+  iconImage: {
+    width: 50,
+    height: 50,
+    marginRight: 8, // Spasi antara ikon dan teks
+  },
+  iconText: {
+    fontSize: 14,
+    color: '#000000',
+    fontFamily: 'Poppins-Regular',
+    marginLeft: -7, // Spasi antara ikon dan teks
+  },
+  iconTextRight: {
+    fontSize: 16,
+    color: '#000000',
+    fontFamily: 'Poppins-Regular',
+    marginLeft: 8, // Spasi antara ikon dan teks
   },
   bottomMenu: {
     position: 'absolute',

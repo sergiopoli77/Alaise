@@ -3,5 +3,9 @@ import Menu from './menu.png';
 import Pesanan from './pesanan.png';
 import Profil from './profil.png';
 import Qr from './QRCODE.png';
-
-export {Home, Menu, Pesanan, Profil,Qr};
+import pickup from './iconpickup.jpg';
+import takeaway from './icontake.jpg';
+import foods from './iconfood.jpg';
+import drinks from './icondrink.jpg';
+import pastries from './iconpastries.jpg';
+export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries};      
