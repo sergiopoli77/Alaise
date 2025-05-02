@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import {MenuButton} from '../../components/molecules';
 import {Slider1} from '../../assets/images';
+import {Qr } from '../../../assets/icon';
 
 const {width} = Dimensions.get('window');
 
@@ -26,10 +27,9 @@ const Home = () => {
       </View>
 
       <ScrollView>
-        {/* Content Section */}
         <View style={styles.content}>
           <View style={[styles.card, styles.firstCard]}>
-            <Text style={styles.cardTitle}>Content 1 Profile</Text>
+            <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
           </View>
           <View style={styles.card}>
             <Text style={styles.cardText}>Content 2 Fitur</Text>
@@ -114,7 +114,10 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333333',
+    color: '#000000',
+    fontFamily: 'Poppins-Regular',
+    marginTop: 10,
+    marginLeft: 18,
   },
   cardText: {
     fontSize: 14,
