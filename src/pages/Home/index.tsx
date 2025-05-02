@@ -18,17 +18,17 @@ const {width} = Dimensions.get('window');
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.sliderContainer}>
-        <Image source={Slider1} style={styles.sliderImage} />
-        <View style={styles.pagination}>
-          <View style={[styles.dot, styles.activeDot]} />
-          <View style={styles.dot} />
-          <View style={styles.dot} />
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <View style={styles.sliderContainer}>
+          <Image source={Slider1} style={styles.sliderImage} />
+          <View style={styles.pagination}>
+            <View style={[styles.dot, styles.activeDot]} />
+            <View style={styles.dot} />
+            <View style={styles.dot} />
+          </View>
         </View>
-      </View>
 
-      <ScrollView>
         <View style={styles.content}>
           <View style={[styles.card, styles.firstCard]}>
             <View style={styles.cardHeader}>
@@ -41,46 +41,49 @@ const Home = () => {
           </View>
 
           <View style={styles.secondcard}>
-          <View style={styles.iconRow}>
-            <View style={styles.iconContainer}>
-              <Image source={pickup} style={styles.iconImage} />
-              <Text style={styles.iconTextRight}>Pickup</Text>
+            <View style={styles.iconRow}>
+              <View style={styles.iconContainer}>
+                <Image source={pickup} style={styles.iconImage} />
+                <Text style={styles.iconTextRight}>Pickup</Text>
+              </View>
+              <View style={styles.iconContainer}>
+                <Image source={takeaway} style={styles.iconImage} />
+                <Text style={styles.iconTextRight}>Takeaway</Text>
+              </View>
             </View>
-            <View style={styles.iconContainer}>
-              <Image source={takeaway} style={styles.iconImage} />
-              <Text style={styles.iconTextRight}>Takeaway</Text>
+            <View style={styles.iconRow}>
+              <View style={styles.iconContainerColumn}>
+                <Image source={foods} style={styles.iconImage} />
+                <Text style={styles.iconText}>Foods</Text>
+              </View>
+              <View style={styles.iconContainerColumn}>
+                <Image source={drinks} style={styles.iconImage} />
+                <Text style={styles.iconText}>Drinks</Text>
+              </View>
+              <View style={styles.iconContainerColumn}>
+                <Image source={pastries} style={styles.iconImage} />
+                <Text style={styles.iconText}>Pastries</Text>
+              </View>
             </View>
           </View>
-          <View style={styles.iconRow}>
-            <View style={styles.iconContainerColumn}>
-              <Image source={foods} style={styles.iconImage} />
-              <Text style={styles.iconText}>Foods</Text>
-            </View>
-            <View style={styles.iconContainerColumn}>
-              <Image source={drinks} style={styles.iconImage} />
-              <Text style={styles.iconText}>Drinks</Text>
-            </View>
-            <View style={styles.iconContainerColumn}>
-              <Image source={pastries} style={styles.iconImage} />
-              <Text style={styles.iconText}>Pastries</Text>
-            </View>
-          </View>
+          <Image source={About} style={styles.Aboutimage} />
         </View>
-        <Image source={About} style={styles.Aboutimage} />
-        </View>
-      </ScrollView>
 
-      {/* Bottom Menu */}
-      <View style={styles.bottomMenu}>
-        <MenuButton />
+        <View style={styles.bottomMenu}>
+          <MenuButton />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1, 
+    backgroundColor: '#F6F6F6',
+  },
   container: {
     flex: 1,
     backgroundColor: '#F6F6F6',
@@ -212,16 +215,18 @@ const styles = StyleSheet.create({
   },
   Aboutimage: {
     marginTop: 20,
+    marginBottom: 100,
   },
   bottomMenu: {
-    position: 'absolute',
+    position: 'absolute', // Tetap di posisi tetap
     bottom: 0,
     left: 0,
     right: 0,
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingVertical: 20,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    elevation: 5, // Tambahkan bayangan untuk efek mengambang
   },
 });
