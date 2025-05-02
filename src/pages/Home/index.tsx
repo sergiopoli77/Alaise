@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import {MenuButton} from '../../components/molecules';
 import {Slider1} from '../../assets/images';
-import {Qr } from '../../../assets/icon';
+import {Qr} from '../../assets/icon';
 
 const {width} = Dimensions.get('window');
 
@@ -29,7 +29,10 @@ const Home = () => {
       <ScrollView>
         <View style={styles.content}>
           <View style={[styles.card, styles.firstCard]}>
-            <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
+            <View style={styles.cardHeader}>
+              <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
+              <Image source={Qr} style={styles.qrIcon} />
+            </View>
           </View>
           <View style={styles.card}>
             <Text style={styles.cardText}>Content 2 Fitur</Text>
@@ -103,21 +106,30 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 16,
     width: width - 32,
-
   },
   firstCard: {
-    marginTop: 100, 
+    marginTop: 100,
     backgroundColor: '#FFFFFF',
     width: 388,
     height: 82,
+  },
+  cardHeader: {
+    flexDirection: 'row', // Align items horizontally
+    justifyContent: 'space-between', // Space between text and icon
+    alignItems: 'center', // Align items vertically
   },
   cardTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: '#000000',
     fontFamily: 'Poppins-Regular',
+    marginLeft: 10,
     marginTop: 10,
-    marginLeft: 18,
+  },
+  qrIcon: {
+    width: 54,
+    height: 54,
+    marginRight: 30,
   },
   cardText: {
     fontSize: 14,
