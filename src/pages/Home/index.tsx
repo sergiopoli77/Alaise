@@ -56,11 +56,11 @@ const Home = () => {
               <Text style={styles.iconText}>Foods</Text>
             </View>
             <View style={styles.iconContainerColumn}>
-
+              <Image source={drinks} style={styles.iconImage} />
               <Text style={styles.iconText}>Drinks</Text>
             </View>
             <View style={styles.iconContainerColumn}>
- 
+              <Image source={pastries} style={styles.iconImage} />
               <Text style={styles.iconText}>Pastries</Text>
             </View>
           </View>
