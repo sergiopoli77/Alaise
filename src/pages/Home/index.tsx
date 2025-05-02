@@ -51,7 +51,10 @@ const Home = () => {
             </View>
           </View>
           <View style={styles.iconRow}>
-          
+            <View style={styles.iconContainerColumn}>
+
+              <Text style={styles.iconText}>Foods</Text>
+            </View>
       
 
           </View>
