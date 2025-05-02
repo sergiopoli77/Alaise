@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {MenuButton} from '../../components/molecules';
-import {Slider1} from '../../assets/images';
+import {Slider1, About} from '../../assets/images';
 import {Qr,pickup,takeaway,foods,drinks,pastries} from '../../assets/icon';
 
 
@@ -66,9 +66,7 @@ const Home = () => {
             </View>
           </View>
         </View>
-          <View style={styles.card}>
-            <Text style={styles.cardText}>Content 3 about Alaise</Text>
-          </View>
+        <Image source={About} style={styles.Aboutimage} />
         </View>
       </ScrollView>
 
@@ -211,6 +209,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontFamily: 'Poppins-Regular',
     marginLeft: 8, // Spasi antara ikon dan teks
+  },
+  AboutImg: {
+    
   },
   bottomMenu: {
     position: 'absolute',
