@@ -45,7 +45,10 @@ const Home = () => {
 
               <Text style={styles.iconTextRight}>Pickup</Text>
             </View>
-            
+            <View style={styles.iconContainer}>
+
+              <Text style={styles.iconTextRight}>Takeaway</Text>
+            </View>
           </View>
           <View style={styles.iconRow}>
           
