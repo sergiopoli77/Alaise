@@ -42,11 +42,10 @@ const Home = () => {
           <View style={styles.secondcard}>
           <View style={styles.iconRow}>
             <View style={styles.iconContainer}>
-
+              <Image source={pickup} style={styles.iconImage} />
               <Text style={styles.iconTextRight}>Pickup</Text>
             </View>
             <View style={styles.iconContainer}>
-
               <Text style={styles.iconTextRight}>Takeaway</Text>
             </View>
           </View>
