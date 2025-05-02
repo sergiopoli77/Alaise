@@ -4,29 +4,32 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 import React from 'react';
+import Swiper from 'react-native-swiper';
 import {MenuButton} from '../../components/molecules';
-import {Slider1, About} from '../../assets/images';
-import {Qr,pickup,takeaway,foods,drinks,pastries} from '../../assets/icon';
-
-
+import {Slider1, Slider2, Slider3, About} from '../../assets/images';
+import {Qr, pickup, takeaway, foods, drinks, pastries} from '../../assets/icon';
 
 const {width} = Dimensions.get('window');
 
 const Home = () => {
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.sliderContainer}>
-          <Image source={Slider1} style={styles.sliderImage} />
-          <View style={styles.pagination}>
-            <View style={[styles.dot, styles.activeDot]} />
-            <View style={styles.dot} />
-            <View style={styles.dot} />
-          </View>
+          <Swiper
+            autoplay
+            autoplayTimeout={2} // Slider berpindah otomatis setiap 2 detik
+            showsPagination
+            dotStyle={styles.dot}
+            activeDotStyle={[styles.dot, styles.activeDot]}
+          >
+            <Image source={Slider1} style={styles.sliderImage} />
+            <Image source={Slider2} style={styles.sliderImage} />
+            <Image source={Slider3} style={styles.sliderImage} />
+          </Swiper>
         </View>
 
         <View style={styles.content}>
@@ -72,8 +75,8 @@ const Home = () => {
         <View style={styles.bottomMenu}>
           <MenuButton />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -87,6 +90,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F6F6F6',
+    
   },
   sliderContainer: {
     position: 'absolute',
@@ -112,17 +116,20 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   dot: {
+    backgroundColor: 'transparent', // Buat lingkaran transparan
+    borderWidth: 1, // Tambahkan border
+    borderColor: '#FFFFFF', // Warna border putih
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#FFFFFF',
     marginHorizontal: 4,
-    opacity: 0.5,
-    marginRight: 20,
-    marginBottom: 20,
   },
   activeDot: {
-    opacity: 1,
+    backgroundColor: '#FFFFFF', // Lingkaran aktif berwarna putih
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 4,
   },
   content: {
     marginTop: 150, // Adjusted to move content up
