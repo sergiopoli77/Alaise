@@ -21,7 +21,7 @@ const Home = () => {
         <View style={styles.sliderContainer}>
           <Swiper
             autoplay
-            autoplayTimeout={2} // Slider berpindah otomatis setiap 2 detik
+            autoplayTimeout={4} // Slider berpindah otomatis setiap 2 detik
             showsPagination
             dotStyle={styles.dot}
             activeDotStyle={[styles.dot, styles.activeDot]}
@@ -110,10 +110,9 @@ const styles = StyleSheet.create({
   pagination: {
     position: 'absolute',
     bottom: 10,
+    right: 20,
     flexDirection: 'row',
-    alignSelf: 'flex-end',
-    right: 16,
-    zIndex: 1,
+    
   },
   dot: {
     backgroundColor: 'transparent', // Buat lingkaran transparan
@@ -123,6 +122,8 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     marginHorizontal: 4,
+    marginRight: 20,
+    marginBottom: 20,
   },
   activeDot: {
     backgroundColor: '#FFFFFF', // Lingkaran aktif berwarna putih
