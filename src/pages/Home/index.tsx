@@ -210,8 +210,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     marginLeft: 8, // Spasi antara ikon dan teks
   },
-  AboutImg: {
-    
+  Aboutimage: {
+    marginTop: 20,
   },
   bottomMenu: {
     position: 'absolute',
