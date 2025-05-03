@@ -12,5 +12,11 @@ import MenuColor from './menuColor.png';
 import HomeNoColor from './homeNoColor.png';
 import PesananColor from './pesananColor.png';
 import ProfilColor from './profilColor.png';
+import SignatureIcon from './signatureIcon.png';
+import FoodIcon from './foodIcon.png';
+import DrinkIcon from './drinkIcon.png';
+import PastriesIcon from './pastriesIcon.png';
 
-export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,MenuColor,HomeNoColor, PesananColor,ProfilColor};      
+export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,
+        MenuColor,HomeNoColor, PesananColor,ProfilColor,SignatureIcon,FoodIcon,
+        DrinkIcon,PastriesIcon,FoodIcon,DrinkIcon,PastriesIcon};      
