@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {HomeNoColor, PesananColor, Menu, Profil} from '../../../assets/icon';
 
-const MenuButton2 = ({navigation}) => {
+const MenuButton3 = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -42,6 +42,8 @@ const MenuButton2 = ({navigation}) => {
     </View>
   );
 };
+
+export default MenuButton3;
 
 const styles = StyleSheet.create({
   container: {
@@ -92,4 +94,3 @@ const styles = StyleSheet.create({
   
 });
 
-export default MenuButton2;
