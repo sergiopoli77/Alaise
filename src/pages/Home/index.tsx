@@ -21,7 +21,7 @@ const Home = () => {
         <View style={styles.sliderContainer}>
           <Swiper
             autoplay
-            autoplayTimeout={4} // Slider berpindah otomatis setiap 2 detik
+            autoplayTimeout={4} 
             showsPagination
             dotStyle={styles.dot}
             activeDotStyle={[styles.dot, styles.activeDot]}
