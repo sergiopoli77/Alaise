@@ -1,5 +1,6 @@
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {SignatureIcon, FoodIcon, DrinkIcon, PastriesIcon} from '../../../assets/icon';
 
 const Header = () => {
   return (

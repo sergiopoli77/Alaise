@@ -19,4 +19,4 @@ import PastriesIcon from './pastriesIcon.png';
 
 export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,
         MenuColor,HomeNoColor, PesananColor,ProfilColor,SignatureIcon,FoodIcon,
-        DrinkIcon,PastriesIcon,FoodIcon,DrinkIcon,PastriesIcon};      
+        DrinkIcon,PastriesIcon};      
