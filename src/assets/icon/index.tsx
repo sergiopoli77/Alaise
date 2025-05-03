@@ -9,4 +9,5 @@ import foods from './iconfood.jpg';
 import drinks from './icondrink.jpg';
 import pastries from './iconpastries.jpg';
 import MenuColor from './menuColor.png';
-export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,MenuColor};      
+import HomeNoColor from './homeNoColor.png';
+export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,MenuColor,HomeNoColor};      

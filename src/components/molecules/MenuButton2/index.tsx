@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import {Home, Pesanan, MenuColor, Profil} from '../../../assets/icon';
+import {HomeNoColor, Pesanan, MenuColor, Profil} from '../../../assets/icon';
 
 const MenuButton = ({navigation}) => {
   return (
@@ -10,7 +10,7 @@ const MenuButton = ({navigation}) => {
           style={styles.button}
           onPress={() => navigation.navigate('Home')}>
           <View style={styles.iconContainer}>
-            <Image source={Home} style={styles.icon} />
+            <Image source={HomeNoColor} style={styles.icon} />
             <Text style={[styles.label, styles.labelbaru]}>Beranda</Text>
           </View>
         </TouchableOpacity>
