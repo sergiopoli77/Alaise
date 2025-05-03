@@ -1,3 +1,4 @@
 import MenuButton from './MenuButton';
+import Header from './Header';
 
-export {MenuButton};
+export {MenuButton, Header};
