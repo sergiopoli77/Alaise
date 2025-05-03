@@ -10,4 +10,7 @@ import drinks from './icondrink.jpg';
 import pastries from './iconpastries.jpg';
 import MenuColor from './menuColor.png';
 import HomeNoColor from './homeNoColor.png';
-export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,MenuColor,HomeNoColor};      
+import PesananColor from './pesananColor.png';
+import ProfilColor from './profilColor.png';
+
+export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,MenuColor,HomeNoColor, PesananColor,ProfilColor};      
