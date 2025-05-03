@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import {HomeNoColor, Pesanan, MenuColor, Profil} from '../../../assets/icon';
+import {HomeNoColor, PesananColor, Menu, Profil} from '../../../assets/icon';
 
 const MenuButton2 = ({navigation}) => {
   return (
@@ -18,16 +18,16 @@ const MenuButton2 = ({navigation}) => {
           style={styles.button}
           onPress={() => navigation.navigate('Menu')}>
           <View style={styles.iconContainer}>
-            <Image source={MenuColor} style={styles.icon} />
-            <Text style={[styles.label, styles.activeLabel]}>Menu</Text>
+            <Image source={Menu} style={styles.icon} />
+            <Text style={[styles.label, styles.labelbaru]}>Menu</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Pesanan')}>
           <View style={styles.iconContainer}>
-            <Image source={Pesanan} style={styles.icon} />
-            <Text style={[styles.label, styles.labelbaru]}>Pesanan</Text>
+            <Image source={PesananColor} style={styles.icon} />
+            <Text style={[styles.label, styles.activeLabel]}>Pesanan</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
