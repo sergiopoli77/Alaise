@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from './src/pages/Home';
+import Signature from './src/pages/Signature';
 
 const App = () => {
-  return <Home />;
+  return <Signature />;
 };
 
 export default App;
