@@ -8,4 +8,5 @@ import takeaway from './icontake.jpg';
 import foods from './iconfood.jpg';
 import drinks from './icondrink.jpg';
 import pastries from './iconpastries.jpg';
-export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries};      
+import MenuColor from './menuColor.png';
+export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,MenuColor};      

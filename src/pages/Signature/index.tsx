@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { MenuButton,Header } from '../../components/molecules';
+import { MenuButton2,Header } from '../../components/molecules';
 
 const Signature = () => {
   return (
@@ -10,7 +10,7 @@ const Signature = () => {
 
       {/* Menu Button */}
       <View style={styles.bottomMenu}>
-        <MenuButton />
+        <MenuButton2 />
       </View>
     </View>
   );
