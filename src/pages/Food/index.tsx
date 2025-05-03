@@ -1,14 +1,38 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { MenuButton2,Header } from '../../components/molecules';
 
-const Food = () => {
+const Signature = () => {
   return (
-    <View>
-      <Text>Food</Text>
+    <View style={styles.container}>
+      {/* Bagian atas dengan ikon */}
+      <Header /> 
+
+      {/* Menu Button */}
+      <View style={styles.bottomMenu}>
+        <MenuButton2 />
+      </View>
     </View>
-  )
-}
+  );
+};
 
-export default Food
+export default Signature;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F6F6F6',
+  },
+  bottomMenu: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    paddingVertical: 20,
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    elevation: 5,
+  },
+});
