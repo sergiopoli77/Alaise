@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const Button = ({label, color = '#C25733', textColor = '#FFFFFF', onPress}) => {
+const Button = ({label, color = '#02CF8E', textColor = '#020202', onPress}) => {
   return (
     <TouchableOpacity
       style={[styles.button, {backgroundColor: color}]}
@@ -16,12 +16,13 @@ export default Button;
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 8,
-    paddingVertical: 14,
+    borderRadius: 30, // Mengambil dari Bravey
+    paddingVertical: 14, // Mengambil dari master (lebih tebal)
     alignItems: 'center',
   },
   label: {
+    textAlign: 'center', // Dari Bravey
     fontFamily: 'Poppins-Medium',
-    fontSize: 16,
+    fontSize: 16, // Lebih besar dari Bravey (lebih readable)
   },
 });
