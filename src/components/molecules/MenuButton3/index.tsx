@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import {Home, Pesanan, Menu, Profil} from '../../../assets/icon';
+import {HomeNoColor, PesananColor, Menu, Profil} from '../../../assets/icon';
 
-const MenuButton = ({navigation}) => {
+const MenuButton3 = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -10,8 +10,8 @@ const MenuButton = ({navigation}) => {
           style={styles.button}
           onPress={() => navigation.navigate('Home')}>
           <View style={styles.iconContainer}>
-            <Image source={Home} style={styles.icon} />
-            <Text style={[styles.label, styles.activeLabel]}>Beranda</Text>
+            <Image source={HomeNoColor} style={styles.icon} />
+            <Text style={[styles.label, styles.labelbaru]}>Beranda</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -26,8 +26,8 @@ const MenuButton = ({navigation}) => {
           style={styles.button}
           onPress={() => navigation.navigate('Pesanan')}>
           <View style={styles.iconContainer}>
-            <Image source={Pesanan} style={styles.icon} />
-            <Text style={[styles.label, styles.labelbaru]}>Pesanan</Text>
+            <Image source={PesananColor} style={styles.icon} />
+            <Text style={[styles.label, styles.activeLabel]}>Pesanan</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -42,6 +42,8 @@ const MenuButton = ({navigation}) => {
     </View>
   );
 };
+
+export default MenuButton3;
 
 const styles = StyleSheet.create({
   container: {
@@ -92,4 +94,3 @@ const styles = StyleSheet.create({
   
 });
 
-export default MenuButton;
