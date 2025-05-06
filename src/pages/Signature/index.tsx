@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MenuButton2,Header } from '../../components/molecules';
+import {mujairPepes, fishChips,chochoDouble,espressoAvocado} from '../../assets/images';
 
 const Signature = () => {
   return (

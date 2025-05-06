@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MenuButton2,Header } from '../../components/molecules';
 
-const Signature = () => {
+const Food = () => {
   return (
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
@@ -16,7 +16,7 @@ const Signature = () => {
   );
 };
 
-export default Signature;
+export default Food;
 
 const styles = StyleSheet.create({
   container: {
