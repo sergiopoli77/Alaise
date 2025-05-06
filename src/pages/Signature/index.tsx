@@ -18,7 +18,13 @@ const Signature = () => {
           description="Mujair fish cooked in banana leaf served with rice"
           price="Rp. 70.000"
         />
-        
+        <MenuItem
+          image={fishChips}
+          title="FISH AND CHIPS"
+          description="Dori dish, fries, served with salad"
+          price="Rp. 65.000"
+        />
+
       </ScrollView>
 
       {/* Menu Button */}
