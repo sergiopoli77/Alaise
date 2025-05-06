@@ -8,11 +8,8 @@ import {
   Text,
   TextInput as RNTextInput
 } from 'react-native';
-import Button from '../../components/atoms/Button';
-import Header from '../../components/molecules/Header';
 import Gap from '../../components/atoms/Gap';
-import MenuButton from '../../components/molecules/MenuButton'; // Pastikan path ini benar
-import HeaderProfile from '../../components/molecules/HeaderProfile';
+import {MenuButton3, Header3,HeaderProfile,Button2 } from '../../components/molecules';
 
 const Pesanan = () => {
   return (
@@ -22,7 +19,7 @@ const Pesanan = () => {
       <Gap height={20} />
         <View style={styles.contentWrapper}>
         </View>
-      <MenuButton />
+      <MenuButton3 />
     </View>
   );
 };
@@ -32,7 +29,7 @@ export default Pesanan;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F6F6F6',
   },
   text: {
     fontFamily: 'Poppins-Medium',

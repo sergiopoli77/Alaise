@@ -17,32 +17,36 @@ const {width} = Dimensions.get('window');
 const Home = () => {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.sliderContainer}>
-          <Swiper
-            autoplay
-            autoplayTimeout={4} 
-            showsPagination
-            dotStyle={styles.dot}
-            activeDotStyle={[styles.dot, styles.activeDot]}
-          >
-            <Image source={Slider1} style={styles.sliderImage} />
-            <Image source={Slider2} style={styles.sliderImage} />
-            <Image source={Slider3} style={styles.sliderImage} />
-          </Swiper>
-        </View>
+      {/* Slider */}
+      <View style={styles.sliderContainer}>
+        <Swiper
+          autoplay
+          autoplayTimeout={4}
+          showsPagination
+          dotStyle={styles.dot}
+          activeDotStyle={[styles.dot, styles.activeDot]}
+        >
+          <Image source={Slider1} style={styles.sliderImage} />
+          <Image source={Slider2} style={styles.sliderImage} />
+          <Image source={Slider3} style={styles.sliderImage} />
+        </Swiper>
+      </View>
 
-        <View style={styles.content}>
-          <View style={[styles.card, styles.firstCard]}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
-              <View style={styles.qrContainer}>
-                <Image source={Qr} style={styles.qrIcon} />
-                <Text style={styles.qrText}>QR</Text>
-              </View>
+      {/* Content */}
+      <View style={styles.content}>
+        {/* QR Card */}
+        <View style={[styles.card, styles.firstCard]}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
+            <View style={styles.qrContainer}>
+              <Image source={Qr} style={styles.qrIcon} />
+              <Text style={styles.qrText}>QR</Text>
             </View>
           </View>
+        </View>
 
+        {/* Scrollable Content */}
+        <ScrollView contentContainerStyle={[styles.scrollContainer, { paddingBottom: 250 }]}>
           <View style={styles.secondcard}>
             <View style={styles.iconRow}>
               <View style={styles.iconContainer}>
@@ -70,12 +74,13 @@ const Home = () => {
             </View>
           </View>
           <Image source={About} style={styles.Aboutimage} />
-        </View>
+        </ScrollView>
+      </View>
 
-        <View style={styles.bottomMenu}>
-          <MenuButton />
-        </View>
-      </ScrollView>
+      {/* Bottom Menu */}
+      <View style={styles.bottomMenu}>
+        <MenuButton />
+      </View>
     </View>
   );
 };
@@ -83,21 +88,16 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    flexGrow: 1, 
-    backgroundColor: '#F6F6F6',
-  },
   container: {
     flex: 1,
     backgroundColor: '#F6F6F6',
-    
   },
   sliderContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    zIndex: 0, // Changed to lower value
+    zIndex: 0,
   },
   sliderImage: {
     width: '100%',
@@ -107,36 +107,30 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 27,
     borderBottomRightRadius: 27,
   },
-  pagination: {
-    position: 'absolute',
-    bottom: 10,
-    right: 20,
-    flexDirection: 'row',
-    
-  },
   dot: {
-    backgroundColor: 'transparent', // Buat lingkaran transparan
-    borderWidth: 1, // Tambahkan border
-    borderColor: '#FFFFFF', // Warna border putih
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
     width: 10,
     height: 10,
     borderRadius: 5,
     marginHorizontal: 4,
-    marginRight: 20,
     marginBottom: 20,
   },
   activeDot: {
-    backgroundColor: '#FFFFFF', // Lingkaran aktif berwarna putih
+    backgroundColor: '#FFFFFF',
     width: 10,
     height: 10,
     borderRadius: 5,
     marginHorizontal: 4,
   },
   content: {
-    marginTop: 150, // Adjusted to move content up
+    marginTop: 150,
     paddingHorizontal: 16,
-    paddingBottom: 80,
-    zIndex: 5, // Increased zIndex
+    zIndex: 5,
+  },
+  scrollContainer: {
+    paddingBottom: 200, // Tambahkan ruang kosong di bawah konten
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -152,18 +146,18 @@ const styles = StyleSheet.create({
     height: 82,
   },
   cardHeader: {
-    flexDirection: 'row', // Align items horizontally
-    justifyContent: 'space-between', // Space between text and icon
-    alignItems: 'center', // Align items vertically
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   qrContainer: {
-    flexDirection: 'row', // Align QR icon and text horizontally
-    alignItems: 'center', // Center vertically
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   qrIcon: {
     width: 54,
     height: 54,
-    marginRight: 8, // Add spacing between QR icon and text
+    marginRight: 8,
   },
   qrText: {
     fontSize: 24,
@@ -176,12 +170,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#000000',
     fontFamily: 'Poppins-Regular',
-    marginLeft: 10,
-    marginTop: -2,
-  },
-  cardText: {
-    fontSize: 14,
-    color: '#666666',
   },
   secondcard: {
     backgroundColor: '#FFFFFF',
@@ -197,36 +185,36 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   iconContainer: {
-    flexDirection: 'row', // Atur ikon dan teks secara horizontal
+    flexDirection: 'row',
     alignItems: 'center',
   },
   iconContainerColumn: {
-    alignItems: 'center', // Untuk ikon dan teks vertikal
-    marginTop: 10, // Spasi antara ikon dan teks
+    alignItems: 'center',
+    marginTop: 10,
   },
   iconImage: {
     width: 50,
     height: 50,
-    marginRight: 8, // Spasi antara ikon dan teks
+    marginRight: 8,
   },
   iconText: {
     fontSize: 14,
     color: '#000000',
     fontFamily: 'Poppins-Regular',
-    marginLeft: -7, // Spasi antara ikon dan teks
+    marginLeft: -7,
   },
   iconTextRight: {
     fontSize: 16,
     color: '#000000',
     fontFamily: 'Poppins-Regular',
-    marginLeft: 8, // Spasi antara ikon dan teks
+    marginLeft: 8,
   },
   Aboutimage: {
     marginTop: 20,
     marginBottom: 100,
   },
   bottomMenu: {
-    position: 'absolute', // Tetap di posisi tetap
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
@@ -235,6 +223,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    elevation: 5, // Tambahkan bayangan untuk efek mengambang
+    elevation: 5, // Untuk Android
+    zIndex: 10, // Pastikan berada di layer paling depan
   },
 });

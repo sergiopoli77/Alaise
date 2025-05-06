@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker'; // Impor dari library baru
-import {Header, TextInput} from '../../components/molecules/';
-import {Button, Gap} from '../../components/atoms/';
+import {TextInput1} from '../../components/molecules/';
+import {Button1, Gap} from '../../components/atoms/';
 
 const SignUp = () => {
   const [selectedGender, setSelectedGender] = useState(''); // State untuk gender
@@ -21,9 +21,9 @@ const SignUp = () => {
       <View style={styles.contentContainer}>
         <Text style={styles.createAccountText}>Create Account</Text>
         <Gap height={10} />
-        <TextInput label="Username" placeholder="Enter your username" />
+        <TextInput1 label="Username" placeholder="Enter your username" />
         <Gap height={15} />
-        <TextInput label="Email" placeholder="Enter your Email" />
+        <TextInput1 label="Email" placeholder="Enter your Email" />
         <Gap height={15} />
 
         {/* Dropdown untuk Gender */}
@@ -42,12 +42,15 @@ const SignUp = () => {
         </View>
 
         <Gap height={20} />
-        <TextInput label="Password" placeholder="Enter your password" />
+        <TextInput1 label="Password" placeholder="Enter your password" />
         <Gap height={24} />
 
-        <View style={styles.signInButton}>
+        <TouchableOpacity
+          style={styles.signInButton}
+          onPress={() => console.log('Continue button pressed')} // Tambahkan aksi di sini
+          activeOpacity={0.7}>
           <Text style={styles.signInButtonText}>Continue</Text>
-        </View>
+        </TouchableOpacity>
         <Gap height={12} />
       </View>
     </View>

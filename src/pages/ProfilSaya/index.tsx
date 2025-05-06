@@ -8,16 +8,15 @@ import {
   Text,
   TextInput as RNTextInput
 } from 'react-native';
-import Button from '../../../atoms/Button';
-import Header from '../../Header';
-import Gap from '../../../atoms/Gap';
-import MenuButton from '../../MenuButton'; // Pastikan path ini benar
+import Gap from '../../components/atoms/Gap';
+import { Header3, MenuButton4 } from '../../components/molecules';
+import { Button2 } from '../../components/atoms';
 
 const ProfileSaya = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Header title="Profil Saya" />
+        <Header3 title="Profil Saya" />
         <Gap height={24} />
         <View style={styles.contentWrapper}>
           <View style={styles.profileContainer}>
@@ -55,7 +54,7 @@ const ProfileSaya = () => {
             />
           </View>
           <Gap height={24} />
-          <Button 
+          <Button2 
             label="Simpan" 
             textColor='white' 
             color='#F87D3A'
@@ -63,7 +62,7 @@ const ProfileSaya = () => {
           />
         </View>
       </ScrollView>
-      <MenuButton />
+      <MenuButton4 />
     </View>
   );
 };
@@ -73,7 +72,7 @@ export default ProfileSaya;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F6F6F6',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -119,12 +118,12 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: 'Poppins-Medium',
     fontSize: 14,
-    color: '#020202',
+    color: '#000000',
     marginBottom: 8,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#F0F0F0',
+    borderColor: '#000000',
     borderRadius: 8,
     padding: 12,
     fontFamily: 'Poppins-medium',

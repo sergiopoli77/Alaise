@@ -1,21 +1,19 @@
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native'; // Hapus Text jika tidak digunakan lagi
 import React from 'react';
-import HeaderProfile from '../../components/molecules/HeaderProfile';
-import ProfileCard from '../../components/molecules/ProfileCards';
-import Gap from '../../components/atoms/Gap';
-import MenuButton from '../../components/molecules/MenuButton';
-import MenuProfile from '../../components/molecules/MenuProfile';
-import Header from '../../components/molecules/Header';
+import Gap from '../../components/atoms/Gap'; // Aktifkan impor Gap
+import MenuProfile from '../../components/molecules/MenuProfile'; // Default import
+import ProfileCard from '../../components/molecules/ProfileCards'; // Default import
+import { MenuButton4 as Menu4, HeaderProfile } from '../../components/molecules'; // Aktifkan impor Menu4 dan HeaderProfile
 
 const Profile = () => {
   return (
-    <View style={styles.page}>
-      <HeaderProfile borderright={30} borderleft={30} />
+    <View style={styles.container}>
+      <HeaderProfile />
       <ProfileCard name="Brevv" />
-      <Gap height={130} />
+      <Gap height={185} />
       <MenuProfile />
       <Gap height={24} />
-      <MenuButton />
+      <Menu4 />
     </View>
   );
 };
@@ -23,11 +21,8 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    backgroundColor: '#F6F6F6',
-  },
   container: {
     flex: 1,
+    backgroundColor: '#F6F6F6',
   },
 });

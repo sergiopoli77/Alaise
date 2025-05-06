@@ -5,14 +5,14 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import Header from '../../../components/molecules/Header';
-import Gap from '../../../components/atoms/Gap';
-import MenuButton from '../../../components/molecules/MenuButton';
+import Gap from '../../components/atoms/Gap';
+import {MenuButton3, Header3} from '../../components/molecules';
+
 
 const DetailPesanan = () => {
   return (
     <View style={styles.container}>
-      <Header title="Detail Pesanan" />
+      <Header3 title="Detail Pesanan" />
       <Gap height={60} />
       <Text style={styles.text}>Pesanan Saya</Text>
       <Gap height={20} />
@@ -27,7 +27,7 @@ const DetailPesanan = () => {
         <View style={styles.contentWrapper2}></View>
       </ScrollView>
 
-      <MenuButton />
+      <MenuButton3 />
     </View>
   );
 };
@@ -38,7 +38,7 @@ export default DetailPesanan;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F6F6F6',
   },
   text: {
     fontFamily: 'Poppins-Medium',

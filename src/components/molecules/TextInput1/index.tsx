@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TextInput as RNTextInput, View} from 'react-native';
 import React from 'react';
 
-const TextInput = ({label, placeholder, ...rest}) => {
+const TextInput1 = ({label, placeholder, ...rest}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -10,7 +10,7 @@ const TextInput = ({label, placeholder, ...rest}) => {
   );
 };
 
-export default TextInput;
+export default TextInput1;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import Header from '../../Header';
-import MenuButton from '../../MenuButton';
+import {MenuButton4, Header3} from '../../components/molecules';
 
 const PengaturanBahasa = () => {
   return (
     <View style={styles.container}>
-      <Header title="Pengaturan Bahasa" />
+      <Header3 title="Pengaturan Bahasa" />
       
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {/* Option Bahasa */}
@@ -18,7 +17,7 @@ const PengaturanBahasa = () => {
         </TouchableOpacity>
       </ScrollView>
 
-      <MenuButton />
+      <MenuButton4 />
     </View>
   );
 };
@@ -26,7 +25,7 @@ const PengaturanBahasa = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F6F6F6',
   },
   contentContainer: {
     paddingHorizontal: 24,
