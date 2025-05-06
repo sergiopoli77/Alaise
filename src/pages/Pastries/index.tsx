@@ -2,9 +2,9 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { MenuButton2, Header } from '../../components/molecules';
 import MenuItem from '../../components/molecules/MenuItem';
-import { espressoAvocado, caramelMacchiato, chocolateBanana} from '../../assets/images';
+import { chochoDouble, croissantIceCream, butterCroissant, milkToast} from '../../assets/images';
 
-const Drink = () => {
+const Pastries = () => {
   return (
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
@@ -16,23 +16,12 @@ const Drink = () => {
       {/* Daftar Menu */}
       <ScrollView contentContainerStyle={styles.menuList}>
         <MenuItem
-          image={espressoAvocado}
-          title="ESPRESSO AVOCADO"
-          description="A creamy blend of avocado juice, vanilla ice cream, and a shot of espresso."
-          price="Rp. 58.000"
+          image={chochoDouble}
+          title="PAIN AU CHOCO DOUBLE"
+          description=""
+          price="Rp. 45.000"
         />
-        <MenuItem
-          image={caramelMacchiato}
-          title="CARAMEL MACCHIATO"
-          description="Rich espresso layered with steamed milk and topped with caramel drizzle."
-          price="Rp. 48.000"
-        />
-        <MenuItem
-          image={chocolateBanana}
-          title="CHOCOLATE BANANA"
-          description="A delightful mix of chocolate and banana, perfect for a sweet treat."
-          price="Rp. 35.000"
-        />
+        
       </ScrollView>
 
       {/* Menu Button */}
@@ -43,7 +32,7 @@ const Drink = () => {
   );
 };
 
-export default Drink;
+export default Pastries;
 
 const styles = StyleSheet.create({
   container: {
