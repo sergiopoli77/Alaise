@@ -30,7 +30,12 @@ const Signature = () => {
           description="Delicious chocolate pastry"
           price="Rp. 45.000"
         />
-
+        <MenuItem
+          image={espressoAvocado}
+          title="ESPRESSO AVOCADO"
+          description="Avocado juice, vanilla ice cream, poured with espresso"
+          price="Rp. 58.000"
+        />
       </ScrollView>
 
       {/* Menu Button */}
