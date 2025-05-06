@@ -21,7 +21,13 @@ const Drink = () => {
           description="A creamy blend of avocado juice, vanilla ice cream, and a shot of espresso."
           price="Rp. 58.000"
         />
-        
+        <MenuItem
+          image={caramelMacchiato}
+          title="CARAMEL MACCHIATO"
+          description="Rich espresso layered with steamed milk and topped with caramel drizzle."
+          price="Rp. 48.000"
+        />
+       
       </ScrollView>
 
       {/* Menu Button */}
