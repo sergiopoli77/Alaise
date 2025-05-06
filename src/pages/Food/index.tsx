@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#DE8F5F',
-    textAlign: 'left', // Ubah dari 'center' ke 'left'
+    textAlign: 'left', 
     marginVertical: 20,
     marginLeft: 20, 
     fontFamily: 'Poppins-Bold',
