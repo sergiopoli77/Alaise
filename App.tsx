@@ -10,9 +10,10 @@ import Pesanan from './src/pages/Pesanan'
 import DetailPesanan from './src/pages/Pesanan/DetailPesanan'
 import Signature from './src/pages/Signature'
 import Food from './src/pages/Food'
+import Drink from './src/pages/Drink'
 
 const App = () => {
-  return <Food />;
+  return <Drink />;
 };
 
 export default App;

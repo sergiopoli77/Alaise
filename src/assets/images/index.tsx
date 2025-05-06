@@ -19,7 +19,9 @@ import tinutuan from './tinutuan.png';
 
 
 
+// export
+
 export {Illustration,Illustration2,Illustration3,Slider1,Slider2,Slider3, About,butterCroissant,caramelMacchiato,
         chochoDouble,chocolateBanana,creamyKatsu,croissantIceCream,
-        espressoAvocado, fishChips, milkToast,mujairPepes,tinutuan,
-};
+        espressoAvocado, fishChips, milkToast,
+        mujairPepes,tinutuan};
