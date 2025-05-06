@@ -35,9 +35,9 @@ const Signature = () => {
         />
         <MenuItem
           image={creamyKatsu}
-          title="ESPRESSO AVOCADO"
-          description="Avocado juice, vanilla ice cream, poured with espresso"
-          price="Rp. 58.000"
+          title="CREAMY KATSU"
+          description="Chicken breast, carrot, yellow egg, creamy pasta"
+          price="Rp. 85.000"
         />
       </ScrollView>
 

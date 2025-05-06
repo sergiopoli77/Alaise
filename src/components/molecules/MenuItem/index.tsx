@@ -42,10 +42,9 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   description: {
-    fontSize: 12,
-    color: '#777777',
-    marginVertical: 5,
+    fontSize: 10,
     color: '#DE8F5F',
+    marginVertical: 5,
     fontFamily: 'Poppins-regular',
   },
   price: {
