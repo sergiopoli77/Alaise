@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
-import Header from '../../Header';
-import MenuButton from '../../MenuButton';
+// import { GapRow } from '../../components/atoms'; // GapRow tidak digunakan
+import { MenuButton4, Header3 } from '../../components/molecules';
+import {LogOut} from '../../assets/icon'; // Import icon di bagian atas
 
 const Pengaturan = () => {
   return (
     <View style={styles.container}>
-      <Header title="Pengaturan" />
+      <Header3 title="Pengaturan" />
       
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {/* Section Informasi */}
@@ -20,14 +21,14 @@ const Pengaturan = () => {
         {/* Tombol Logout */}
         <TouchableOpacity style={styles.logoutButton} activeOpacity={0.7}>
           <Image
-            source={require('../../../../assets/icon/Logout.png')}
+            source={LogOut} // Gunakan import icon
             style={styles.logoutIcon}
           />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
 
-      <MenuButton />
+      <MenuButton4 />
     </View>
   );
 };

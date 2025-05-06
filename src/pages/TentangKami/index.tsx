@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import Header from '../../Header';
-import MenuButton from '../../MenuButton'; // Pastikan komponen ini sudah ada
-
+import {MenuButton4, Header3} from '../../components/molecules';
 const TentangKami = () => {
   return (
     <View style={styles.container}>
-      <Header title="Tentang Kami" />
+      <Header3 title="Tentang Kami" />
       
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Text style={styles.contentText}>
@@ -20,7 +18,7 @@ const TentangKami = () => {
 
       <View style={styles.divider} />
 
-      <MenuButton />
+      <MenuButton4 />
     </View>
   );
 };

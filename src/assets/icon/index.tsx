@@ -16,7 +16,9 @@ import SignatureIcon from './signatureIcon.png';
 import FoodIcon from './foodIcon.png';
 import DrinkIcon from './drinkIcon.png';
 import PastriesIcon from './pastriesIcon.png';
+import IconBack from './iconBack.png';
+import LogOut from './Logout.png';
 
 export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,
         MenuColor,HomeNoColor, PesananColor,ProfilColor,SignatureIcon,FoodIcon,
-        DrinkIcon,PastriesIcon};      
+        DrinkIcon,PastriesIcon,IconBack,LogOut};      

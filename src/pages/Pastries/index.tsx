@@ -11,7 +11,7 @@ const Pastries = () => {
       <Header />
 
       {/* Title */}
-      <Text style={styles.title}>Drink</Text>
+      <Text style={styles.title}>Pastries</Text>
 
       {/* Daftar Menu */}
       <ScrollView contentContainerStyle={styles.menuList}>

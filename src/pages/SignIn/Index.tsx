@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {Header, TextInput} from '../../components/molecules/';
-import {Button, Gap} from '../../components/atoms/';
+import {TextInput1} from '../../components/molecules/';
+import {Gap} from '../../components/atoms/';
 
 const SignIn = () => {
   return (
@@ -18,9 +18,9 @@ const SignIn = () => {
 
       <View style={styles.contentContainer}>
         <Gap height={26} />
-        <TextInput label="Username" placeholder="Enter your username" />
+        <TextInput1 label="Username" placeholder="Enter your username" />
         <Gap height={20} />
-        <TextInput label="Password" placeholder="Enter your password" />
+        <TextInput1 label="Password" placeholder="Enter your password" />
         <Gap height={24} />
         <View style={styles.signInButton}>
           <Text style={styles.signInButtonText}>Sign In</Text>

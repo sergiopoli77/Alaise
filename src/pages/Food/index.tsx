@@ -4,7 +4,7 @@ import { MenuButton2, Header } from '../../components/molecules';
 import MenuItem from '../../components/molecules/MenuItem';
 import { mujairPepes, fishChips, tinutuan, creamyKatsu } from '../../assets/images';
 
-const Signature = () => {
+const Food = () => {
   return (
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
@@ -49,7 +49,7 @@ const Signature = () => {
   );
 };
 
-export default Signature;
+export default Food;
 
 const styles = StyleSheet.create({
   container: {
