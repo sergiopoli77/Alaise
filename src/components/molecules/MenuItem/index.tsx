@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
-    padding: 10,
-    marginBottom: 15,
-    elevation: 3,
+    padding: 15,
+    marginBottom: 20
+
   },
   image: {
-    width: 80,
-    height: 80,
+    width: 140,
+    height: 120,
     borderRadius: 10,
     marginRight: 10,
   },
@@ -58,6 +58,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#DE8F5F',
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'flex-end', // Posisikan tombol di kanan bawah
+    marginTop: 10, // T
+    
   },
   addButtonText: {
     color: '#FFFFFF',
