@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     padding: 15,
-    marginTop: 10,
     marginBottom: 20,
   },
   image: {
@@ -39,11 +38,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-regular',
     color: '#333333',
   },
   description: {
-    fontSize: 10,
+    fontSize: 12,
     color: '#777777',
     marginVertical: 5,
     color: '#DE8F5F',

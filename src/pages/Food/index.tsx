@@ -29,9 +29,9 @@ const Signature = () => {
         />
         <MenuItem
           image={tinutuan}
-          title="PAIN AU CHOCO DOUBLE"
-          description="Delicious chocolate pastry"
-          price="Rp. 45.000"
+          title="TINUTUAN"
+          description="Comgee made from rice, pumkin and vegetables"
+          price="Rp. 35.000"
         />
         <MenuItem
           image={creamyKatsu}
