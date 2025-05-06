@@ -1,12 +1,45 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { MenuButton2,Header } from '../../components/molecules';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
+import { MenuButton2, Header } from '../../components/molecules';
+import MenuItem from '../../components/molecules/MenuItem';
+import { mujairPepes, fishChips, tinutuan, creamyKatsu } from '../../assets/images';
 
-const Food = () => {
+const Signature = () => {
   return (
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
-      <Header /> 
+      <Header />
+
+      {/* Title */}
+      <Text style={styles.title}>Food</Text>
+
+      {/* Daftar Menu */}
+      <ScrollView contentContainerStyle={styles.menuList}>
+        <MenuItem
+          image={mujairPepes}
+          title="MUJAIR PEPES"
+          description="Mujair fish cooked in banana leaf served with rice"
+          price="Rp. 70.000"
+        />
+        <MenuItem
+          image={fishChips}
+          title="FISH AND CHIPS"
+          description="Dori dish, fries, served with salad"
+          price="Rp. 65.000"
+        />
+        <MenuItem
+          image={tinutuan}
+          title="PAIN AU CHOCO DOUBLE"
+          description="Delicious chocolate pastry"
+          price="Rp. 45.000"
+        />
+        <MenuItem
+          image={creamyKatsu}
+          title="ESPRESSO AVOCADO"
+          description="Avocado juice, vanilla ice cream, poured with espresso"
+          price="Rp. 58.000"
+        />
+      </ScrollView>
 
       {/* Menu Button */}
       <View style={styles.bottomMenu}>
@@ -16,12 +49,26 @@ const Food = () => {
   );
 };
 
-export default Food;
+export default Signature;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F6F6F6',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#DE8F5F',
+    textAlign: 'left', // Ubah dari 'center' ke 'left'
+    marginVertical: 20,
+    marginLeft: 20, 
+    fontFamily: 'Poppins-Bold',
+  },
+  menuList: {
+    paddingHorizontal: 20,
+    paddingBottom: 100,
+    paddingTop: 10
   },
   bottomMenu: {
     position: 'absolute',

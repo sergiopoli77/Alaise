@@ -8,10 +8,11 @@ import PengaturanBahasa from './src/components/molecules/MenuProfile/PengaturanB
 import Pengaturan from './src/components/molecules/MenuProfile/Pengaturan';
 import Pesanan from './src/pages/Pesanan'
 import DetailPesanan from './src/pages/Pesanan/DetailPesanan'
-import Signature from './src/pages/Signature';
+import Signature from './src/pages/Signature'
+import Food from './src/pages/Food'
 
 const App = () => {
-  return <Signature />;
+  return <Food />;
 };
 
 export default App;
