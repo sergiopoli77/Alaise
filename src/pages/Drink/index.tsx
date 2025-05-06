@@ -27,7 +27,12 @@ const Drink = () => {
           description="Rich espresso layered with steamed milk and topped with caramel drizzle."
           price="Rp. 48.000"
         />
-       
+        <MenuItem
+          image={chocolateBanana}
+          title="CHOCOLATE BANANA"
+          description="A delightful mix of chocolate and banana, perfect for a sweet treat."
+          price="Rp. 35.000"
+        />
       </ScrollView>
 
       {/* Menu Button */}
