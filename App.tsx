@@ -18,7 +18,7 @@ import PengaturanBahasa from './src/pages/PengaturanBahasa'
 
 
 const App = () => {
-    return <DetailPesanan />; 
+    return <Profile />; 
 
 }
 export default App;
