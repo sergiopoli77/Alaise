@@ -24,6 +24,12 @@ const Signature = () => {
           description="Dori dish, fries, served with salad"
           price="Rp. 65.000"
         />
+        <MenuItem
+          image={chochoDouble}
+          title="PAIN AU CHOCO DOUBLE"
+          description="Delicious chocolate pastry"
+          price="Rp. 45.000"
+        />
 
       </ScrollView>
 
