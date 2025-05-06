@@ -1,7 +1,7 @@
 import Home from './home.png';
 import Menu from './menu.png';
-import Pesanan from './pesanan.png';
 import Profil from './profil.png';
+import Pesanan from './pesanan.png';
 import Qr from './QRCODE.png';
 import pickup from './iconpickup.jpg';
 import takeaway from './icontake.jpg';
@@ -16,7 +16,9 @@ import SignatureIcon from './signatureIcon.png';
 import FoodIcon from './foodIcon.png';
 import DrinkIcon from './drinkIcon.png';
 import PastriesIcon from './pastriesIcon.png';
+import IconBack from './iconBack.png';
+import LogOut from './Logout.png';
 
 export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,
         MenuColor,HomeNoColor, PesananColor,ProfilColor,SignatureIcon,FoodIcon,
-        DrinkIcon,PastriesIcon};      
+        DrinkIcon,PastriesIcon,IconBack,LogOut};      

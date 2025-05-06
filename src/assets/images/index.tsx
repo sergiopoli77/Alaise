@@ -1,3 +1,6 @@
+import Illustration  from './illustration.png';
+import Illustration2 from './illustration2.png';
+import Illustration3 from './illustration3.png';
 import Slider1 from './KatsuSlider.png';
 import Slider2 from './CroisssantSlider.png'
 import Slider3 from './TinutuanSlider.png';    
@@ -13,9 +16,12 @@ import fishChips from './fish-chips.png';
 import milkToast from './milk-toast.png';
 import mujairPepes from './mujair-pepes.png';
 import tinutuan from './tinutuan.png';
-import waterMelonJuice from './watermelon-juice.png';
 
-export {Slider1,Slider2,Slider3, About,butterCroissant,caramelMacchiato,
+
+
+// export
+
+export {Illustration,Illustration2,Illustration3,Slider1,Slider2,Slider3, About,butterCroissant,caramelMacchiato,
         chochoDouble,chocolateBanana,creamyKatsu,croissantIceCream,
-        espressoAvocado, fishChips, milkToast,mujairPepes,tinutuan,
-        waterMelonJuice};
+        espressoAvocado, fishChips, milkToast,
+        mujairPepes,tinutuan};

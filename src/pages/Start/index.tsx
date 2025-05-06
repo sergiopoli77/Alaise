@@ -1,9 +1,7 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper'; // Import Swiper
-import Illustration from '../../assets/illustration.png';
-import Illustration2 from '../../assets/illustration2.png';
-import Illustration3 from '../../assets/illustration3.png';
+import {Illustration, Illustration2, Illustration3} from '../../assets/images';
 
 const Start = () => {
   return (
