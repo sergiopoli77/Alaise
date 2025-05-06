@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { MenuButton2, Header } from '../../components/molecules';
 import MenuItem from '../../components/molecules/MenuItem';
 import { mujairPepes, fishChips, chochoDouble, espressoAvocado } from '../../assets/images';
@@ -9,6 +9,9 @@ const Signature = () => {
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
       <Header />
+
+      {/* Title */}
+      <Text style={styles.title}>SIGNATURE</Text>
 
       {/* Daftar Menu */}
       <ScrollView contentContainerStyle={styles.menuList}>
@@ -52,6 +55,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F6F6F6',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#DE8F5F',
+    textAlign: 'left', // Ubah dari 'center' ke 'left'
+    marginVertical: 20,
+    marginLeft: 20, 
+    fontFamily: 'Poppins-Bold',
   },
   menuList: {
     paddingHorizontal: 20,
