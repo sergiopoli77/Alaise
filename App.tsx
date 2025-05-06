@@ -7,7 +7,7 @@ import Pastries from './src/pages/Pastries'
 import Home from './src/pages/Home'
 
 const App = () => {
-  return <Home />;
+  return <Pastries />;
 };
 
 export default App;
