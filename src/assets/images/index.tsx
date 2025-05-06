@@ -16,9 +16,10 @@ import fishChips from './fish-chips.png';
 import milkToast from './milk-toast.png';
 import mujairPepes from './mujair-pepes.png';
 import tinutuan from './tinutuan.png';
-import waterMelonJuice from './watermelon-juice.png';
+
+
 
 export {Illustration,Illustration2,Illustration3,Slider1,Slider2,Slider3, About,butterCroissant,caramelMacchiato,
         chochoDouble,chocolateBanana,creamyKatsu,croissantIceCream,
         espressoAvocado, fishChips, milkToast,mujairPepes,tinutuan,
-        waterMelonJuice};
+};

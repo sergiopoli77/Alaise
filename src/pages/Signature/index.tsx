@@ -1,13 +1,25 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { MenuButton2,Header } from '../../components/molecules';
-import {mujairPepes, fishChips,chochoDouble,espressoAvocado} from '../../assets/images';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { MenuButton2, Header } from '../../components/molecules';
+import MenuItem from '../../components/molecules/MenuItem';
+import { mujairPepes, fishChips, chochoDouble, espressoAvocado } from '../../assets/images';
 
 const Signature = () => {
   return (
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
-      <Header /> 
+      <Header />
+
+      {/* Daftar Menu */}
+      <ScrollView contentContainerStyle={styles.menuList}>
+        <MenuItem
+          image={mujairPepes}
+          title="MUJAIR PEPES"
+          description="Mujair fish cooked in banana leaf served with rice"
+          price="Rp. 70.000"
+        />
+        
+      </ScrollView>
 
       {/* Menu Button */}
       <View style={styles.bottomMenu}>
@@ -23,6 +35,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F6F6F6',
+  },
+  menuList: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
   },
   bottomMenu: {
     position: 'absolute',
