@@ -7,6 +7,8 @@ import Signature from './src/pages/Signature'
 import Food from './src/pages/Food'
 import Drink from './src/pages/Drink'
 import Pastries from './src/pages/Pastries'
+import Pesanan from './src/pages/Pesanan'
+import DetailPesanan from './src/pages/DetailPesanan'
 import Profile from './src/pages/Profile'
 import ProfileSaya from './src/pages/ProfilSaya' 
 import TentangKami from './src/pages/TentangKami'
@@ -16,7 +18,7 @@ import PengaturanBahasa from './src/pages/PengaturanBahasa'
 
 
 const App = () => {
-    return <PengaturanBahasa />; 
+    return <DetailPesanan />; 
 
 }
 export default App;

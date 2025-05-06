@@ -5,7 +5,7 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import Gap from '../../../components/atoms/Gap';
+import Gap from '../../components/atoms/Gap';
 import {MenuButton3, Header3} from '../../components/molecules';
 
 
@@ -38,7 +38,7 @@ export default DetailPesanan;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F6F6F6',
   },
   text: {
     fontFamily: 'Poppins-Medium',

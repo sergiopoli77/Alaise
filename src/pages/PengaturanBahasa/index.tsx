@@ -25,7 +25,7 @@ const PengaturanBahasa = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F6F6F6',
   },
   contentContainer: {
     paddingHorizontal: 24,
