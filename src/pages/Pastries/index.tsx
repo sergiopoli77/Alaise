@@ -21,6 +21,12 @@ const Pastries = () => {
           description=""
           price="Rp. 45.000"
         />
+        <MenuItem
+          image={croissantIceCream}
+          title="CROISSANT ICE CREAM"
+          description=""
+          price="Rp. 40.000"
+        />
         
       </ScrollView>
 
