@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   },
   menuList: {
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingBottom: 100,
+    paddingTop: 10
   },
   bottomMenu: {
     position: 'absolute',
