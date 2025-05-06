@@ -15,6 +15,12 @@ const Drink = () => {
 
       {/* Daftar Menu */}
       <ScrollView contentContainerStyle={styles.menuList}>
+        <MenuItem
+          image={espressoAvocado}
+          title="ESPRESSO AVOCADO"
+          description="A creamy blend of avocado juice, vanilla ice cream, and a shot of espresso."
+          price="Rp. 58.000"
+        />
         
       </ScrollView>
 
