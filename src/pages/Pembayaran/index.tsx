@@ -1,12 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 import {MenuButton4, Header3} from '../../components/molecules';
 import {QRIS, Mandiri, BCA, BNI, BRI} from '../../../assets/icon';
+
 const Pembayaran = () => {
+  const navigation = useNavigation(); // Dapatkan objek navigasi
+
   return (
     <View style={styles.container}>
-      <Header3 title="Pembayaran" />
-      
+      <Header3
+        title="Pembayaran"
+        onPress={() => navigation.navigate('Checkout')} // Tambahkan onPress untuk navigasi ke Checkout
+      />
       <ScrollView contentContainerStyle={styles.contentContainer}>
         
       </ScrollView>
