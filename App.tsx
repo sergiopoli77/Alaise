@@ -14,11 +14,22 @@ import ProfileSaya from './src/pages/ProfilSaya'
 import TentangKami from './src/pages/TentangKami'
 import Pengaturan from './src/pages/Pengaturan'
 import PengaturanBahasa from './src/pages/PengaturanBahasa'
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-
-
+const Stack = createNativeStackNavigator();
 const App = () => {
-    return <DetailPesanan />; 
-
-}
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{headerShown: false}}
+          />
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
 export default App;
