@@ -18,6 +18,7 @@ const Signature = () => {
       price: priceNumber,
       quantity: 1, // Default quantity saat pertama kali ditambah
       image: itemDetails.image, // Ini adalah ImageSourcePropType untuk tampilan di Checkout
+      description: itemDetails.description || '', // Tambahkan deskripsi jika ada
       imageName: `${itemDetails.id}.png` // Atau nama file asli jika Anda tahu, misal 'mujairPepes.png'
     };
 
