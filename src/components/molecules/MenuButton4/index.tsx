@@ -18,7 +18,7 @@ const MenuButton4 = ({}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Menu')}>
+          onPress={() => navigation.navigate('Signature')}>
           <View style={styles.iconContainer}>
             <Image source={Menu} style={styles.icon} />
             <Text style={[styles.label, styles.labelbaru]}>Menu</Text>
