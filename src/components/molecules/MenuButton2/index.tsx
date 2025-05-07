@@ -1,8 +1,10 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {HomeNoColor, Pesanan, MenuColor, Profil} from '../../../assets/icon';
 
-const MenuButton2 = ({navigation}) => {
+const MenuButton2 = ({}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -16,7 +18,7 @@ const MenuButton2 = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Menu')}>
+          onPress={() => navigation.navigate('Signature')}>
           <View style={styles.iconContainer}>
             <Image source={MenuColor} style={styles.icon} />
             <Text style={[styles.label, styles.activeLabel]}>Menu</Text>
@@ -32,7 +34,7 @@ const MenuButton2 = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Profil')}>
+          onPress={() => navigation.navigate('Profile')}>
           <View style={styles.iconContainer}>
             <Image source={Profil} style={styles.icon} />
             <Text style={[styles.label, styles.labelbaru]}>Profil</Text>
