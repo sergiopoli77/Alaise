@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native'; // Impor useNavigation
 const Signature = () => {
   const navigation = useNavigation(); // Dapatkan objek navigasi
 
-  const handleAddItemToCheckout = (itemDetails: { id: string, title: string; price: string; image: any }) => {
+  const handleAddItemToCheckout = (itemDetails: { id: string, title: string; price: string; image: any, description?: string }) => {
     // Mengonversi harga dari string "Rp. XX.XXX" menjadi angka
     const priceNumber = parseInt(itemDetails.price.replace(/[^0-9]/g, ''), 10);
 
@@ -18,7 +18,7 @@ const Signature = () => {
       price: priceNumber,
       quantity: 1, // Default quantity saat pertama kali ditambah
       image: itemDetails.image, // Ini adalah ImageSourcePropType untuk tampilan di Checkout
-      description: itemDetails.description || '', // Tambahkan deskripsi jika ada
+      description: itemDetails.description || '', // Tambahkan deskripsi
       imageName: `${itemDetails.id}.png` // Atau nama file asli jika Anda tahu, misal 'mujairPepes.png'
     };
 
@@ -43,28 +43,28 @@ const Signature = () => {
           title="MUJAIR PEPES"
           description="Mujair fish cooked in banana leaf served with rice"
           price="Rp. 70.000"
-          onAddToCart={() => handleAddItemToCheckout({ id: 'sig1', title: "MUJAIR PEPES", price: "Rp. 70.000", image: mujairPepes })}
+          onAddToCart={() => handleAddItemToCheckout({ id: 'sig1', title: "MUJAIR PEPES", price: "Rp. 70.000", image: mujairPepes, description: "Mujair fish cooked in banana leaf served with rice" })}
         />
         <MenuItem
           image={fishChips}
           title="FISH AND CHIPS"
           description="Dori dish, fries, served with salad"
           price="Rp. 65.000"
-          onAddToCart={() => handleAddItemToCheckout({ id: 'sig2', title: "FISH AND CHIPS", price: "Rp. 65.000", image: fishChips })}
+          onAddToCart={() => handleAddItemToCheckout({ id: 'sig2', title: "FISH AND CHIPS", price: "Rp. 65.000", image: fishChips, description: "Dori dish, fries, served with salad" })}
         />
         <MenuItem
           image={chochoDouble}
           title="PAIN AU CHOCO DOUBLE"
           description="Delicious chocolate pastry"
           price="Rp. 45.000"
-          onAddToCart={() => handleAddItemToCheckout({ id: 'sig3', title: "PAIN AU CHOCO DOUBLE", price: "Rp. 45.000", image: chochoDouble })}
+          onAddToCart={() => handleAddItemToCheckout({ id: 'sig3', title: "PAIN AU CHOCO DOUBLE", price: "Rp. 45.000", image: chochoDouble, description: "Delicious chocolate pastry" })}
         />
         <MenuItem
           image={espressoAvocado}
           title="ESPRESSO AVOCADO"
           description="Avocado juice, vanilla ice cream, poured with espresso"
           price="Rp. 58.000"
-          onAddToCart={() => handleAddItemToCheckout({ id: 'sig4', title: "ESPRESSO AVOCADO", price: "Rp. 58.000", image: espressoAvocado })}
+          onAddToCart={() => handleAddItemToCheckout({ id: 'sig4', title: "ESPRESSO AVOCADO", price: "Rp. 58.000", image: espressoAvocado, description: "Avocado juice, vanilla ice cream, poured with espresso" })}
         />
       </ScrollView>
 

@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   itemDescription: {
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: 'Poppins-Regular',
     color: '#DE8F5F',
     marginTop: 2,
