@@ -9,7 +9,7 @@ const Profile = () => {
   return (
     <View style={styles.container}>
       <HeaderProfile />
-      <ProfileCard name="Brevv" />
+      <ProfileCard name="Pelanggan" />
       <Gap height={185} />
       <MenuProfile />
       <Gap height={24} />
