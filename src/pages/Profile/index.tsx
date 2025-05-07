@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'; // Hapus Text jika tidak digunakan lagi
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // Impor useCallback
 import Gap from '../../components/atoms/Gap'; // Aktifkan impor Gap
 import MenuProfile from '../../components/molecules/MenuProfile'; // Default import
 import ProfileCard from '../../components/molecules/ProfileCards'; // Default import
@@ -7,54 +7,57 @@ import { MenuButton4 as Menu4, HeaderProfile } from '../../components/molecules'
 import { auth, db } from '../../config/Firebase'; // Impor auth dan db
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { ref as databaseRef, get, DataSnapshot } from 'firebase/database';
+import { useFocusEffect } from '@react-navigation/native'; // Impor useFocusEffect
 
 const Profile = () => {
   const [displayName, setDisplayName] = useState('Pelanggan'); // Default name
   const [profilePhotoUri, setProfilePhotoUri] = useState<string | null>(null); // State untuk URI foto profil
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
-      console.log('Profile.tsx: Auth state changed. User:', user ? user.uid : 'null');
-      if (user) {
-        // Pengguna login, coba ambil username dari Realtime Database
-        try {
-          const userRef = databaseRef(db, `users/${user.uid}`);
-          console.log('Profile.tsx: Fetching data from path:', `users/${user.uid}`);
-          const snapshot: DataSnapshot = await get(userRef);
-          if (snapshot.exists()) {
-            const userData = snapshot.val();
-            console.log('Profile.tsx: User data from DB:', userData);
-            if (userData.username) {
-              setDisplayName(userData.username);
-              console.log('Profile.tsx: DisplayName set to:', userData.username);
-            } else {
-              setDisplayName('Pelanggan'); // Fallback jika username tidak ada
-              console.log('Profile.tsx: DisplayName fallback to Pelanggan (no username in DB)');
-            }
-            if (userData.profileImageUrl) {
-              setProfilePhotoUri(userData.profileImageUrl); // Simpan URI foto profil
-              // Jangan log seluruh base64 karena bisa sangat panjang
-              console.log('Profile.tsx: ProfilePhotoUri set with a value (first 50 chars):', userData.profileImageUrl ? userData.profileImageUrl.substring(0, 50) : 'null');
-            } else {
-              setProfilePhotoUri(null); // Tidak ada foto profil
-              console.log('Profile.tsx: ProfilePhotoUri set to null (no profileImageUrl in DB)');
-            }
+  const fetchUserData = useCallback(async (currentUser: User | null) => {
+    console.log('Profile.tsx: Fetching user data. User:', currentUser ? currentUser.uid : 'null');
+    if (currentUser) {
+      try {
+        const userRef = databaseRef(db, `users/${currentUser.uid}`);
+        console.log('Profile.tsx: Fetching data from path:', `users/${currentUser.uid}`);
+        const snapshot: DataSnapshot = await get(userRef);
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          console.log('Profile.tsx: User data from DB:', userData);
+          if (userData && userData.username) {
+            setDisplayName(userData.username);
+            console.log('Profile.tsx: DisplayName set to:', userData.username);
           } else {
-            console.log('Profile.tsx: No data found for user in DB at path:', `users/${user.uid}`);
-            setDisplayName('Pelanggan'); // Fallback jika username tidak ada
-            setProfilePhotoUri(null); // Tidak ada data pengguna
+            setDisplayName('Pelanggan');
+            console.log('Profile.tsx: DisplayName fallback to Pelanggan (no username in DB or userData is null)');
           }
-        } catch (error) {
-          console.error("Error fetching user data for Profile:", error);
-          setDisplayName('Pelanggan'); // Fallback jika ada error
-          setProfilePhotoUri(null); // Juga reset foto profil jika ada error
+          if (userData && userData.profileImageUrl) {
+            setProfilePhotoUri(userData.profileImageUrl);
+            console.log('Profile.tsx: ProfilePhotoUri set with a value (first 50 chars):', userData.profileImageUrl ? userData.profileImageUrl.substring(0, 50) : 'null');
+          } else {
+            setProfilePhotoUri(null);
+            console.log('Profile.tsx: ProfilePhotoUri set to null (no profileImageUrl in DB or userData is null)');
+          }
+        } else {
+          console.log('Profile.tsx: No data found for user in DB at path:', `users/${currentUser.uid}`);
+          setDisplayName('Pelanggan');
+          setProfilePhotoUri(null);
         }
-      } else {
-        console.log('Profile.tsx: No user logged in.');
-        // Tidak ada pengguna yang login
+      } catch (error) {
+        console.error("Error fetching user data for Profile:", error);
         setDisplayName('Pelanggan');
         setProfilePhotoUri(null);
       }
+    } else {
+      console.log('Profile.tsx: No user logged in for fetchUserData.');
+      setDisplayName('Pelanggan');
+      setProfilePhotoUri(null);
+    }
+  }, []); // Dependencies: db
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
+      // Panggil fetchUserData saat status auth berubah
+      fetchUserData(user); 
     });
 
     // Cleanup listener saat komponen unmount
@@ -63,6 +66,16 @@ const Profile = () => {
       unsubscribe();
     };
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      // Panggil fetchUserData saat layar mendapatkan fokus
+      // Kita perlu mendapatkan user saat ini lagi karena onAuthStateChanged mungkin tidak langsung trigger
+      const currentUser = auth.currentUser;
+      fetchUserData(currentUser);
+      return () => {}; // Fungsi cleanup opsional untuk useFocusEffect
+    }, [fetchUserData]) // fetchUserData dimasukkan sebagai dependensi
+  );
 
   return (
     <View style={styles.container}>

@@ -25,10 +25,11 @@ const ProfileSaya = () => {
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [isSavingChanges, setIsSavingChanges] = useState(false); // Mengganti 'loading' dan 'isSavingPhoto'
   const [error, setError] = useState<string | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
-  const [isSavingPhoto, setIsSavingPhoto] = useState(false); // Mengganti isUploading
+  const [pendingPhotoUri, setPendingPhotoUri] = useState<string | null>(null); // Foto baru yang dipilih, belum disimpan
+  // isSavingPhoto tidak lagi diperlukan secara terpisah jika digabung ke isSavingChanges
 
   // Efek untuk mengambil data pengguna saat komponen dimuat
   useEffect(() => {
@@ -74,44 +75,8 @@ const ProfileSaya = () => {
     return () => unsubscribe(); // Cleanup listener
   }, []);
 
-  const handleUpdatePassword = async () => {
-    if (!newPassword.trim()) {
-      Alert.alert('Input Error', 'Please enter a new password.');
-      return;
-    }
-    if (newPassword.length < 6) {
-      Alert.alert('Input Error', 'Password should be at least 6 characters long.');
-      return;
-    }
-    if (!currentUser) {
-      Alert.alert('Error', 'No user is currently logged in.');
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-    try {
-      await firebaseUpdatePassword(currentUser, newPassword);
-      Alert.alert('Success', 'Password updated successfully!');
-      setNewPassword(''); // Kosongkan field password
-    } catch (updateError) {
-      const authError = updateError as AuthError;
-      console.error("Error updating password:", authError);
-      let friendlyMessage = 'Failed to update password. Please try again.';
-      if (authError.code === 'auth/requires-recent-login') {
-        friendlyMessage = 'This operation is sensitive and requires recent authentication. Please log out and log back in to update your password.';
-      } else if (authError.code === 'auth/weak-password') {
-        friendlyMessage = 'The new password is too weak.';
-      }
-      setError(friendlyMessage);
-      Alert.alert('Update Failed', friendlyMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleChoosePhoto = () => {
-    if (isSavingPhoto) return; // Jangan lakukan apa-apa jika sedang menyimpan
+    if (isSavingChanges) return; // Jangan lakukan apa-apa jika sedang proses simpan
 
     launchImageLibrary(
       { 
@@ -131,29 +96,81 @@ const ProfileSaya = () => {
         const selectedAsset: Asset = response.assets[0];
         if (selectedAsset.base64 && selectedAsset.type && currentUser) {
           const base64DataUri = `data:${selectedAsset.type};base64,${selectedAsset.base64}`;
-          await saveProfilePhotoToDB(base64DataUri, currentUser.uid);
+          setPendingPhotoUri(base64DataUri); // Simpan ke state sementara untuk preview
         }
       }
     }
     );
   };
 
-  const saveProfilePhotoToDB = async (base64Uri: string, userId: string) => {
-    setIsSavingPhoto(true);
+  const handleSaveChanges = async () => {
+    if (!currentUser) {
+      Alert.alert('Error', 'No user is currently logged in.');
+      return;
+    }
+
+    // Cek apakah ada perubahan yang akan disimpan
+    if (!newPassword.trim() && !pendingPhotoUri) {
+      Alert.alert('Info', 'No changes to save.');
+      return;
+    }
+
+    setIsSavingChanges(true);
     setError(null);
-    try {
-      const userDbRef = databaseRef(db, `users/${userId}`);
-      await updateDatabase(userDbRef, { profileImageUrl: base64Uri }); // Simpan base64 URI
-      setProfileImageUrl(base64Uri); // Update state untuk menampilkan gambar baru
-      Alert.alert('Success', 'Profile photo updated!');
-    } catch (e: any) {
-      console.error("Error saving photo to DB:", e);
-      setError('Failed to save photo. Please try again.');
-      Alert.alert('Save Failed', 'Could not save photo: ' + e.message);
-    } finally {
-      setIsSavingPhoto(false);
+    let passwordUpdateSuccess = true;
+    let photoUpdateSuccess = true;
+
+    // 1. Update Password jika ada
+    if (newPassword.trim()) {
+      if (newPassword.length < 6) {
+        Alert.alert('Input Error', 'Password should be at least 6 characters long.');
+        setIsSavingChanges(false);
+        return;
+      }
+      try {
+        await firebaseUpdatePassword(currentUser, newPassword);
+        setNewPassword(''); // Kosongkan field password setelah berhasil
+      } catch (updateError) {
+        passwordUpdateSuccess = false;
+        const authError = updateError as AuthError;
+        console.error("Error updating password:", authError);
+        let friendlyMessage = 'Failed to update password. Please try again.';
+        if (authError.code === 'auth/requires-recent-login') {
+          friendlyMessage = 'Password update requires recent login. Please log out and log back in.';
+        } else if (authError.code === 'auth/weak-password') {
+          friendlyMessage = 'The new password is too weak.';
+        }
+        setError(friendlyMessage); // Set error untuk ditampilkan di UI
+        Alert.alert('Password Update Failed', friendlyMessage);
+      }
+    }
+
+    // 2. Update Foto Profil jika ada foto baru yang dipilih
+    if (pendingPhotoUri) {
+      try {
+        const userDbRef = databaseRef(db, `users/${currentUser.uid}`);
+        await updateDatabase(userDbRef, { profileImageUrl: pendingPhotoUri });
+        setProfileImageUrl(pendingPhotoUri); // Update foto yang ditampilkan dengan yang baru disimpan
+        setPendingPhotoUri(null); // Kosongkan foto yang tertunda
+      } catch (e: any) {
+        photoUpdateSuccess = false;
+        console.error("Error saving photo to DB:", e);
+        // Tambahkan setError jika ingin menampilkan error foto di UI juga
+        Alert.alert('Photo Update Failed', 'Could not save new profile photo: ' + e.message);
+      }
+    }
+
+    setIsSavingChanges(false);
+
+    if (passwordUpdateSuccess && photoUpdateSuccess) {
+      if (newPassword.trim() || pendingPhotoUri) { // Hanya tampilkan jika ada perubahan yang diproses
+        Alert.alert('Success', 'Changes saved successfully!');
+      }
     }
   };
+
+  // Tentukan URI gambar yang akan ditampilkan: prioritaskan pending, lalu yang tersimpan, lalu null
+  const displayImageUri = pendingPhotoUri || profileImageUrl;
 
   return (
     <KeyboardAvoidingView
@@ -173,12 +190,12 @@ const ProfileSaya = () => {
               style={styles.avatarContainer} 
               activeOpacity={0.7}
               onPress={handleChoosePhoto}
-              disabled={isSavingPhoto || !currentUser} // Nonaktifkan jika sedang menyimpan atau tidak ada user
+              disabled={isSavingChanges || !currentUser} // Nonaktifkan jika sedang menyimpan atau tidak ada user
             >
-              {isSavingPhoto ? (
+              {isSavingChanges && pendingPhotoUri ? ( // Tampilkan loading di avatar hanya jika foto sedang diproses
                 <ActivityIndicator size="large" color="#F87D3A" style={styles.avatarImage} />
-              ) : profileImageUrl ? (
-                <Image source={{ uri: profileImageUrl }} style={styles.avatarImage} />
+              ) : displayImageUri ? ( // Gunakan displayImageUri di sini
+                <Image key={displayImageUri} source={{ uri: displayImageUri }} style={styles.avatarImage} />
               ) : (
                 <View style={styles.avatarPlaceholder}>
                   <Text style={styles.addPhotoLabel}>Add Photo</Text>
@@ -213,18 +230,18 @@ const ProfileSaya = () => {
               secureTextEntry
               value={newPassword}
               onChangeText={setNewPassword}
-              editable={!loading}
+              editable={!isSavingChanges}
             />
           </View>
           {error && <Text style={styles.errorText}>{error}</Text>}
           <Gap height={24} />
           <Button2
-            label={loading ? "Saving..." : "Simpan Perubahan"}
+            label={isSavingChanges ? "Saving..." : "Simpan Perubahan"}
             textColor='white'
             color='#F87D3A'
             style={styles.saveButton}
-            onPress={handleUpdatePassword}
-            disabled={loading}
+            onPress={handleSaveChanges}
+            disabled={isSavingChanges}
           />
         </View>
       </ScrollView>
