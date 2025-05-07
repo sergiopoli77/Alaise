@@ -1,10 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 // import { GapRow } from '../../components/atoms'; // GapRow tidak digunakan
 import { MenuButton4, Header3 } from '../../components/molecules';
 import {LogOut} from '../../assets/icon'; // Import icon di bagian atas
 
 const Pengaturan = () => {
+  const navigation = useNavigation(); // Dapatkan objek navigasi
+
+  const handleLogout = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'SignIn' }], // Arahkan ke SignIn dan reset stack
+    });
+  };
   return (
     <View style={styles.container}>
       <Header3 title="Pengaturan" />
@@ -19,7 +28,10 @@ const Pengaturan = () => {
         <View style={styles.divider} />
 
         {/* Tombol Logout */}
-        <TouchableOpacity style={styles.logoutButton} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          activeOpacity={0.7}
+          onPress={handleLogout} >
           <Image
             source={LogOut} // Gunakan import icon
             style={styles.logoutIcon}

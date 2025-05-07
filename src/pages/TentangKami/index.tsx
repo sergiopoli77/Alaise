@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
     paddingBottom: 80, // Memberi ruang untuk bottom navigation
   },
   contentText: {
-    fontSize: 14,
+    fontSize: 18,
     fontFamily: 'Poppins-Medium',
-    lineHeight: 22, // Memberi jarak antar baris
+    lineHeight: 34, // Memberi jarak antar baris
     textAlign: 'justify', // Rata kiri-kanan
   },
   divider: {
