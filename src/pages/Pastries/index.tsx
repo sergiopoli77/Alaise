@@ -5,6 +5,11 @@ import MenuItem from '../../components/molecules/MenuItem';
 import { chochoDouble, croissantIceCream, butterCroissant, milkToast} from '../../assets/images';
 
 const Pastries = () => {
+  const handleAddToCart = (item) => {
+    // Di sini nantinya kita akan menambahkan logika untuk menyimpan item ke keranjang
+    console.log('Added to cart:', item.title, item.price);
+  };
+
   return (
     <View style={styles.container}>
       {/* Bagian atas dengan ikon */}
@@ -20,24 +25,28 @@ const Pastries = () => {
           title="PAIN AU CHOCO DOUBLE"
           description=""
           price="Rp. 45.000"
+          onAddToCart={() => handleAddToCart({ title: "PAIN AU CHOCO DOUBLE", price: "Rp. 45.000" })}
         />
         <MenuItem
           image={croissantIceCream}
           title="CROISSANT ICE CREAM"
           description=""
           price="Rp. 40.000"
+          onAddToCart={() => handleAddToCart({ title: "CROISSANT ICE CREAM", price: "Rp. 40.000" })}
         />
         <MenuItem
           image={butterCroissant}
           title="BUTTER CROISSANT"
           description=""
           price="Rp. 35.000"
+          onAddToCart={() => handleAddToCart({ title: "BUTTER CROISSANT", price: "Rp. 35.000" })}
         />
         <MenuItem
           image={milkToast}
           title="MILK TOAST"
           description="Vanilla ice cream with nutella"
           price="Rp. 38.000"
+          onAddToCart={() => handleAddToCart({ title: "MILK TOAST", price: "Rp. 38.000" })}
         />
         
       </ScrollView>

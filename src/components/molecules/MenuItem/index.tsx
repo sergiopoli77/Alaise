@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MenuItem = ({ image, title, description, price }) => {
+const MenuItem = ({ image, title, description, price, onAddToCart }) => {
   return (
     <View style={styles.container}>
       <Image source={image} style={styles.image} resizeMode="cover" />
@@ -10,7 +10,10 @@ const MenuItem = ({ image, title, description, price }) => {
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.price}>{price}</Text>
       </View>
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity 
+        style={styles.addButton}
+        onPress={onAddToCart} // Panggil fungsi onAddToCart saat ditekan
+      >
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
     </View>
