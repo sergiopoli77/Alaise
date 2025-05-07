@@ -2,6 +2,7 @@
 import { initializeApp, FirebaseApp } from "firebase/app";
 import { getAuth, Auth } from "firebase/auth";
 import { getDatabase, Database } from "firebase/database";
+import { getStorage, FirebaseStorage } from "firebase/storage"; // Tambahkan impor ini
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,5 +25,6 @@ const app: FirebaseApp = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and Realtime Database
 const auth: Auth = getAuth(app);
 const db: Database = getDatabase(app); // Pastikan ini ada
+const storage: FirebaseStorage = getStorage(app); // Inisialisasi Storage
 
-export { app, auth, db }; // Ekspor db juga
+export { app, auth, db, storage }; // Ekspor storage juga

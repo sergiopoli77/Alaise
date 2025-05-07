@@ -7,14 +7,18 @@ import {
   View,
   Text,
   TextInput as RNTextInput,
-  Alert
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ActivityIndicator
 } from 'react-native';
 import Gap from '../../components/atoms/Gap';
 import { Header3, MenuButton4 } from '../../components/molecules';
 import { Button2 } from '../../components/atoms';
-import { auth, db } from '../../config/Firebase'; // Impor Firebase config
+import { auth, db } from '../../config/Firebase'; // Impor Firebase config, storage tidak lagi diperlukan
 import { onAuthStateChanged, User, updatePassword as firebaseUpdatePassword, AuthError } from 'firebase/auth';
-import { ref as databaseRef, get, DataSnapshot } from 'firebase/database';
+import { ref as databaseRef, get, DataSnapshot, update as updateDatabase } from 'firebase/database';
+import { launchImageLibrary, ImagePickerResponse, Asset } from 'react-native-image-picker';
 
 const ProfileSaya = () => {
   const [username, setUsername] = useState('');
@@ -23,6 +27,8 @@ const ProfileSaya = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+  const [isSavingPhoto, setIsSavingPhoto] = useState(false); // Mengganti isUploading
 
   // Efek untuk mengambil data pengguna saat komponen dimuat
   useEffect(() => {
@@ -35,20 +41,34 @@ const ProfileSaya = () => {
         try {
           const userDbRef = databaseRef(db, `users/${user.uid}`);
           const snapshot: DataSnapshot = await get(userDbRef);
-          if (snapshot.exists() && snapshot.val().username) {
-            setUsername(snapshot.val().username);
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            if (userData.username) {
+              setUsername(userData.username);
+            } else {
+              setUsername('Pengguna'); // Fallback untuk username
+            }
+            if (userData.profileImageUrl) {
+              setProfileImageUrl(userData.profileImageUrl);
+            } else {
+              setProfileImageUrl(null); // Eksplisit null jika tidak ada URL gambar profil
+            }
           } else {
-            setUsername('Pengguna'); // Fallback
+            // Node pengguna tidak ada di DB
+            setUsername('Pengguna');
+            setProfileImageUrl(null);
           }
         } catch (dbError) {
           console.error("Error fetching username from DB:", dbError);
           setUsername('Pengguna'); // Fallback
+          setProfileImageUrl(null); // Fallback untuk URL gambar profil jika terjadi error
         }
       } else {
         // Tidak ada pengguna, mungkin arahkan ke login atau tampilkan pesan
         setCurrentUser(null);
         setUsername('');
         setEmail('');
+        setProfileImageUrl(null);
       }
     });
     return () => unsubscribe(); // Cleanup listener
@@ -90,17 +110,80 @@ const ProfileSaya = () => {
     }
   };
 
+  const handleChoosePhoto = () => {
+    if (isSavingPhoto) return; // Jangan lakukan apa-apa jika sedang menyimpan
+
+    launchImageLibrary(
+      { 
+        mediaType: 'photo', 
+        quality: 0.3, // Kurangi kualitas untuk base64 agar tidak terlalu besar
+        maxWidth: 500, // Batasi ukuran gambar
+        maxHeight: 500,
+        includeBase64: true // Minta data base64
+      }, 
+      async (response: ImagePickerResponse) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+        Alert.alert('Error', 'Could not select image: ' + response.errorMessage);
+      } else if (response.assets && response.assets.length > 0) {
+        const selectedAsset: Asset = response.assets[0];
+        if (selectedAsset.base64 && selectedAsset.type && currentUser) {
+          const base64DataUri = `data:${selectedAsset.type};base64,${selectedAsset.base64}`;
+          await saveProfilePhotoToDB(base64DataUri, currentUser.uid);
+        }
+      }
+    }
+    );
+  };
+
+  const saveProfilePhotoToDB = async (base64Uri: string, userId: string) => {
+    setIsSavingPhoto(true);
+    setError(null);
+    try {
+      const userDbRef = databaseRef(db, `users/${userId}`);
+      await updateDatabase(userDbRef, { profileImageUrl: base64Uri }); // Simpan base64 URI
+      setProfileImageUrl(base64Uri); // Update state untuk menampilkan gambar baru
+      Alert.alert('Success', 'Profile photo updated!');
+    } catch (e: any) {
+      console.error("Error saving photo to DB:", e);
+      setError('Failed to save photo. Please try again.');
+      Alert.alert('Save Failed', 'Could not save photo: ' + e.message);
+    } finally {
+      setIsSavingPhoto(false);
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <KeyboardAvoidingView
+      style={styles.keyboardAvoidingWrapper}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView 
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled" // Agar keyboard bisa ditutup dengan tap di luar input
+        showsVerticalScrollIndicator={false} // Opsional: sembunyikan scrollbar vertikal
+      >
         <Header3 title="Profil Saya" />
         <Gap height={24} />
         <View style={styles.contentWrapper}>
           <View style={styles.profileContainer}>
-            <TouchableOpacity style={styles.avatarContainer} activeOpacity={0.7}>
-              <View style={styles.avatarPlaceholder}>
-                <Text style={styles.addPhotoLabel}>Add Photo</Text>
-              </View>
+            <TouchableOpacity 
+              style={styles.avatarContainer} 
+              activeOpacity={0.7}
+              onPress={handleChoosePhoto}
+              disabled={isSavingPhoto || !currentUser} // Nonaktifkan jika sedang menyimpan atau tidak ada user
+            >
+              {isSavingPhoto ? (
+                <ActivityIndicator size="large" color="#F87D3A" style={styles.avatarImage} />
+              ) : profileImageUrl ? (
+                <Image source={{ uri: profileImageUrl }} style={styles.avatarImage} />
+              ) : (
+                <View style={styles.avatarPlaceholder}>
+                  <Text style={styles.addPhotoLabel}>Add Photo</Text>
+                </View>
+              )}
             </TouchableOpacity>
           </View>
           <Gap height={26} />
@@ -146,7 +229,7 @@ const ProfileSaya = () => {
         </View>
       </ScrollView>
       <MenuButton4 />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -154,12 +237,19 @@ export default ProfileSaya;
 
 const styles = StyleSheet.create({
   container: {
+    // Style ini mungkin tidak lagi menjadi container utama,
+    // karena KeyboardAvoidingView mengambil alih.
+    // Namun, kita bisa memindahkannya ke keyboardAvoidingWrapper.
     flex: 1,
     backgroundColor: '#F6F6F6',
   },
   scrollContainer: {
     flexGrow: 1,
     paddingBottom: 60, // Sesuaikan dengan tinggi MenuButton
+  },
+  keyboardAvoidingWrapper: { // Style untuk KeyboardAvoidingView
+    flex: 1,
+    backgroundColor: '#F6F6F6', // Sama seperti container asli
   },
   contentWrapper: {
     backgroundColor: '#FFFFFF',
@@ -189,6 +279,12 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  avatarImage: { // Style untuk gambar avatar yang sudah diupload
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    backgroundColor: '#E0E0E0', // Warna latar belakang sementara gambar dimuat
   },
   addPhotoLabel: {
     fontFamily: 'Poppins-Light',
