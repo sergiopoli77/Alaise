@@ -8,6 +8,7 @@ import Food from './src/pages/Food'
 import Drink from './src/pages/Drink'
 import Pastries from './src/pages/Pastries'
 import Checkout from './src/pages/Checkout'
+import Pembayaran from './src/pages/Pembayaran'
 import Pesanan from './src/pages/Pesanan'
 import DetailPesanan from './src/pages/DetailPesanan'
 import Profile from './src/pages/Profile'
@@ -75,6 +76,11 @@ const App = () => {
           <Stack.Screen
             name="Checkout"
             component={Checkout}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Pembayaran"
+            component={Pembayaran}
             options={{headerShown: false}}
           />
           <Stack.Screen

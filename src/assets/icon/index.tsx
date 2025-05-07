@@ -19,7 +19,12 @@ import PastriesIcon from './pastriesIcon.png';
 import IconBack from './iconBack.png';
 import LogOut from './Logout.png';
 import Cart from './cart.png';
+import QRIS from './QRIS.png';
+import Mandiri from './Mandiri.png';
+import BCA from './BCA.png';
+import BNI from './BNI.png';
+import BRI from './BRI.png';
 
 export {Home, Menu, Pesanan, Profil,Qr,pickup,takeaway,foods,drinks,pastries,
         MenuColor,HomeNoColor, PesananColor,ProfilColor,SignatureIcon,FoodIcon,
-        DrinkIcon,PastriesIcon,IconBack,LogOut,Cart};      
+        DrinkIcon,PastriesIcon,IconBack,LogOut,Cart, QRIS,Mandiri,BCA,BNI,BRI};      
