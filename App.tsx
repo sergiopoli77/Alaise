@@ -7,6 +7,8 @@ import Signature from './src/pages/Signature'
 import Food from './src/pages/Food'
 import Drink from './src/pages/Drink'
 import Pastries from './src/pages/Pastries'
+import Checkout from './src/pages/Checkout'
+import Pembayaran from './src/pages/Pembayaran'
 import Pesanan from './src/pages/Pesanan'
 import DetailPesanan from './src/pages/DetailPesanan'
 import Profile from './src/pages/Profile'
@@ -16,7 +18,8 @@ import Pengaturan from './src/pages/Pengaturan'
 import PengaturanBahasa from './src/pages/PengaturanBahasa'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context'; 
+import './src/config/Firebase'; // <-- Perubahan di sini
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +71,16 @@ const App = () => {
           <Stack.Screen
             name="Pastries"
             component={Pastries}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Checkout"
+            component={Checkout}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Pembayaran"
+            component={Pembayaran}
             options={{headerShown: false}}
           />
           <Stack.Screen
