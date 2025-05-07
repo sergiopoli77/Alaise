@@ -1,8 +1,11 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Logo from '../../assets/Logo.png'; // Pastikan path ini benar
 
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => navigation.replace('Start'), 2000);
+  }, []);
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.logo} />

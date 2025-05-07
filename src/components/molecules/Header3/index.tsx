@@ -1,12 +1,23 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {IconBack} from '../../../assets/icon';
 
 const Header3 = ({ title, onPress }) => {
+  const navigation = useNavigation();
+
+  const handleBackPress = () => {
+    if (onPress) {
+      onPress(); // Jalankan fungsi onPress dari parent jika ada
+    } else {
+      navigation.navigate('Profile'); // Default navigasi ke halaman Profile
+    }
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity 
-        onPress={onPress} 
+        onPress={handleBackPress} // Gunakan handler baru
         style={styles.backButton}
         activeOpacity={0.7} // Efek saat ditekan
       >

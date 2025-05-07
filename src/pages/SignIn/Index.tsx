@@ -1,9 +1,11 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'; // Import TouchableOpacity
 import React from 'react';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 import {TextInput1} from '../../components/molecules/';
 import {Gap} from '../../components/atoms/';
 
 const SignIn = () => {
+  const navigation = useNavigation(); // Dapatkan objek navigasi
   return (
     <View style={styles.pageContainer}>
       {/* Tambahkan Logo */}
@@ -22,9 +24,12 @@ const SignIn = () => {
         <Gap height={20} />
         <TextInput1 label="Password" placeholder="Enter your password" />
         <Gap height={24} />
-        <View style={styles.signInButton}>
+        <TouchableOpacity
+          style={styles.signInButton}
+          onPress={() => navigation.navigate('Home')} // Navigasi ke Home
+        >
           <Text style={styles.signInButtonText}>Sign In</Text>
-        </View>
+        </TouchableOpacity>
         <Gap height={12} />
       </View>
     </View>
