@@ -7,17 +7,48 @@ import {
   Dimensions,
   TouchableOpacity, // Import TouchableOpacity
 } from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Swiper from 'react-native-swiper';
 import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 import {MenuButton} from '../../components/molecules';
 import {Slider1, Slider2, Slider3, About} from '../../assets/images';
 import {Qr, pickup, takeaway, foods, drinks, pastries} from '../../assets/icon';
+import { auth, db } from '../../config/Firebase'; // Impor auth dan db
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { ref as databaseRef, get, child, DataSnapshot } from 'firebase/database';
 
 const {width} = Dimensions.get('window');
 
 const Home = () => {
   const navigation = useNavigation(); // Dapatkan objek navigasi
+  const [displayName, setDisplayName] = useState('Pelanggan'); // Default name
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
+      if (user) {
+        // Pengguna login, coba ambil username dari Realtime Database
+        try {
+          const userRef = databaseRef(db, `users/${user.uid}`);
+          const snapshot: DataSnapshot = await get(userRef);
+          if (snapshot.exists() && snapshot.val().username) {
+            setDisplayName(snapshot.val().username);
+          } else {
+            setDisplayName('Pelanggan'); // Fallback jika username tidak ada
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          setDisplayName('Pelanggan'); // Fallback jika ada error
+        }
+      } else {
+        // Tidak ada pengguna yang login
+        setDisplayName('Pelanggan');
+      }
+    });
+
+    // Cleanup listener saat komponen unmount
+    return () => unsubscribe();
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* Slider */}
@@ -40,7 +71,7 @@ const Home = () => {
         {/* QR Card */}
         <View style={[styles.card, styles.firstCard]}>
           <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Hi, Pelanggan</Text>
+            <Text style={styles.cardTitle}>Hi, {displayName}</Text>
             <View style={styles.qrContainer}>
               <Image source={Qr} style={styles.qrIcon} />
               <Text style={styles.qrText}>QR</Text>

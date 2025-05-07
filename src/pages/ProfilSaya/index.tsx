@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   ScrollView,
@@ -6,13 +6,90 @@ import {
   TouchableOpacity,
   View,
   Text,
-  TextInput as RNTextInput
+  TextInput as RNTextInput,
+  Alert
 } from 'react-native';
 import Gap from '../../components/atoms/Gap';
 import { Header3, MenuButton4 } from '../../components/molecules';
 import { Button2 } from '../../components/atoms';
+import { auth, db } from '../../config/Firebase'; // Impor Firebase config
+import { onAuthStateChanged, User, updatePassword as firebaseUpdatePassword, AuthError } from 'firebase/auth';
+import { ref as databaseRef, get, DataSnapshot } from 'firebase/database';
 
 const ProfileSaya = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Efek untuk mengambil data pengguna saat komponen dimuat
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setCurrentUser(user);
+        setEmail(user.email || ''); // Ambil email langsung dari auth user
+
+        // Ambil username dari Realtime Database
+        try {
+          const userDbRef = databaseRef(db, `users/${user.uid}`);
+          const snapshot: DataSnapshot = await get(userDbRef);
+          if (snapshot.exists() && snapshot.val().username) {
+            setUsername(snapshot.val().username);
+          } else {
+            setUsername('Pengguna'); // Fallback
+          }
+        } catch (dbError) {
+          console.error("Error fetching username from DB:", dbError);
+          setUsername('Pengguna'); // Fallback
+        }
+      } else {
+        // Tidak ada pengguna, mungkin arahkan ke login atau tampilkan pesan
+        setCurrentUser(null);
+        setUsername('');
+        setEmail('');
+      }
+    });
+    return () => unsubscribe(); // Cleanup listener
+  }, []);
+
+  const handleUpdatePassword = async () => {
+    if (!newPassword.trim()) {
+      Alert.alert('Input Error', 'Please enter a new password.');
+      return;
+    }
+    if (newPassword.length < 6) {
+      Alert.alert('Input Error', 'Password should be at least 6 characters long.');
+      return;
+    }
+    if (!currentUser) {
+      Alert.alert('Error', 'No user is currently logged in.');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    try {
+      await firebaseUpdatePassword(currentUser, newPassword);
+      Alert.alert('Success', 'Password updated successfully!');
+      setNewPassword(''); // Kosongkan field password
+    } catch (updateError) {
+      const authError = updateError as AuthError;
+      console.error("Error updating password:", authError);
+      let friendlyMessage = 'Failed to update password. Please try again.';
+      if (authError.code === 'auth/requires-recent-login') {
+        friendlyMessage = 'This operation is sensitive and requires recent authentication. Please log out and log back in to update your password.';
+      } else if (authError.code === 'auth/weak-password') {
+        friendlyMessage = 'The new password is too weak.';
+      }
+      setError(friendlyMessage);
+      Alert.alert('Update Failed', friendlyMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -29,36 +106,42 @@ const ProfileSaya = () => {
           <Gap height={26} />
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Username</Text>
-            <RNTextInput 
+            <RNTextInput
               style={styles.input}
-              value="Sergio Poli"
-              editable={false}
+              value={username}
+              editable={false} // Username biasanya tidak diubah dari sini
             />
           </View>
           <Gap height={16} />
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
-            <RNTextInput 
+            <RNTextInput
               style={styles.input}
-              value="sergiopoli@gmail.com"
-              editable={false}
+              value={email}
+              editable={false} // Email biasanya tidak diubah dari sini
             />
           </View>
           <Gap height={16} />
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Password</Text>
-            <RNTextInput 
+            <Text style={styles.label}>New Password</Text>
+            <RNTextInput
               style={styles.input}
-              placeholder="Isi password Anda"
+              placeholder="Enter new password"
               secureTextEntry
+              value={newPassword}
+              onChangeText={setNewPassword}
+              editable={!loading}
             />
           </View>
+          {error && <Text style={styles.errorText}>{error}</Text>}
           <Gap height={24} />
-          <Button2 
-            label="Simpan" 
-            textColor='white' 
+          <Button2
+            label={loading ? "Saving..." : "Simpan Perubahan"}
+            textColor='white'
             color='#F87D3A'
             style={styles.saveButton}
+            onPress={handleUpdatePassword}
+            disabled={loading}
           />
         </View>
       </ScrollView>
@@ -132,5 +215,12 @@ const styles = StyleSheet.create({
   saveButton: {
     borderRadius: 8,
     height: 45,
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 10,
+    fontFamily: 'Poppins-Regular',
+    fontSize: 12,
   },
 });
