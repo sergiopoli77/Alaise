@@ -60,7 +60,7 @@ const Checkout = () => {
   const handlePaymentSelect = () => {
     // Implementasi logika untuk memilih metode pembayaran
     // Alert.alert("Pilih Pembayaran", "Fitur pilih pembayaran akan segera hadir!"); // Hapus atau komentari baris ini
-    navigation.navigate('Pembayaran'); // Tambahkan navigasi ke halaman Pembayaran
+    navigation.navigate('Pembayaran', { totalAmount: total }); // Kirim total sebagai parameter
   };
 
   return (
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   itemDescription: {
     fontSize: 13,
     fontFamily: 'Poppins-Regular',
-    color: '#777777',
+    color: '#DE8F5F',
     marginTop: 2,
   },
   itemPrice: {

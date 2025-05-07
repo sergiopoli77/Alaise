@@ -8,17 +8,28 @@ import {
   Alert,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'; // Import useRoute and RouteProp
 import { Header3 } from '../../components/molecules';
 import {QRIS, Mandiri, BNI, BCA, BRI } from '../../assets/icon';
 
+// Definisikan tipe untuk parameter route
+type PembayaranRouteParams = { Pembayaran: { totalAmount?: number } };
+type PembayaranScreenRouteProp = RouteProp<PembayaranRouteParams, 'Pembayaran'>;
 const Pembayaran = () => {
   const navigation = useNavigation();
 
   const handlePaymentSelect = (metode) => {
-    Alert.alert('Pembayaran', `Metode dipilih: ${metode}`);
-    // navigation.navigate('Pesanan'); // Tambahkan jika ingin pindah setelah pembayaran
+    if (metode === 'Bayar Sekarang') {
+      // Navigate to Pesanan screen when "Bayar Sekarang" is pressed
+      navigation.navigate('Pesanan');
+    } else {
+      Alert.alert('Pembayaran', `Metode dipilih: ${metode}`);
+    }
   };
+
+  const route = useRoute<PembayaranScreenRouteProp>();
+  // Ambil totalAmount dari parameter route, default ke 0 jika tidak ada
+  const total = route.params?.totalAmount || 0;
 
   return (
     <View style={styles.container}>
@@ -28,7 +39,7 @@ const Pembayaran = () => {
       />
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.totalText}>Rp. 70.000</Text>
+        <Text style={styles.totalText}>Rp. {total.toLocaleString('id-ID')}</Text>
 
         <View style={styles.paymentMethodsContainer}>
           <Text style={styles.sectionTitle}>Metode Pembayaran</Text>
@@ -99,10 +110,11 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
   totalText: {
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
     marginBottom: 16,
+    color: '#000000',
   },
   sectionTitle: {
     fontSize: 14,
