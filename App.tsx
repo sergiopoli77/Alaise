@@ -16,7 +16,8 @@ import Pengaturan from './src/pages/Pengaturan'
 import PengaturanBahasa from './src/pages/PengaturanBahasa'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context'; 
+import './src/config/Firebase'; // <-- Perubahan di sini
 
 const Stack = createNativeStackNavigator();
 
