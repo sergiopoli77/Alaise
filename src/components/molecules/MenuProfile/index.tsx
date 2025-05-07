@@ -1,21 +1,29 @@
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const MenuProfile = () => {
+  const navigation = useNavigation();
   // Data menu
   const menuItems = [
-    "Profile Saya",
-    "Pengaturan Bahasa", 
-    "Tentang Kami",
-    "Pengaturan"
+    { text: "Profile Saya", route: "ProfileSaya" },
+    { text: "Pengaturan Bahasa", route: "PengaturanBahasa" },
+    { text: "Tentang Kami", route: "TentangKami" },
+    { text: "Pengaturan", route: "Pengaturan" }
   ];
 
   return (
     <View style={styles.container}>
       {menuItems.map((item, index) => (
-        <View key={item}>
-          <TouchableOpacity style={styles.menuItem}>
-            <Text style={styles.menuText}>{item}</Text>
+        <View key={item.text}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              if (item.route) {
+                navigation.navigate(item.route);
+              }
+            }}>
+            <Text style={styles.menuText}>{item.text}</Text>
             <Text style={styles.arrowIcon}>{'>'}</Text>
           </TouchableOpacity>
           {index !== menuItems.length - 1 && (
