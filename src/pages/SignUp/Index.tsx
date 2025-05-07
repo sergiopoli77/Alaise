@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker'; // Impor dari library baru
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 import {TextInput1} from '../../components/molecules/';
 import {Button1, Gap} from '../../components/atoms/';
 
 const SignUp = () => {
+  const navigation = useNavigation(); // Dapatkan objek navigasi
   const [selectedGender, setSelectedGender] = useState(''); // State untuk gender
 
   return (
@@ -47,7 +49,7 @@ const SignUp = () => {
 
         <TouchableOpacity
           style={styles.signInButton}
-          onPress={() => console.log('Continue button pressed')} // Tambahkan aksi di sini
+          onPress={() => navigation.navigate('SignIn')} // Navigasi ke SignIn
           activeOpacity={0.7}>
           <Text style={styles.signInButtonText}>Continue</Text>
         </TouchableOpacity>
