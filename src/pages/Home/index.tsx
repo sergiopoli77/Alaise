@@ -5,9 +5,11 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  TouchableOpacity, // Import TouchableOpacity
 } from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 import {MenuButton} from '../../components/molecules';
 import {Slider1, Slider2, Slider3, About} from '../../assets/images';
 import {Qr, pickup, takeaway, foods, drinks, pastries} from '../../assets/icon';
@@ -15,6 +17,7 @@ import {Qr, pickup, takeaway, foods, drinks, pastries} from '../../assets/icon';
 const {width} = Dimensions.get('window');
 
 const Home = () => {
+  const navigation = useNavigation(); // Dapatkan objek navigasi
   return (
     <View style={styles.container}>
       {/* Slider */}
@@ -49,28 +52,38 @@ const Home = () => {
         <ScrollView contentContainerStyle={[styles.scrollContainer, { paddingBottom: 250 }]}>
           <View style={styles.secondcard}>
             <View style={styles.iconRow}>
-              <View style={styles.iconContainer}>
-                <Image source={pickup} style={styles.iconImage} />
-                <Text style={styles.iconTextRight}>Pickup</Text>
-              </View>
-              <View style={styles.iconContainer}>
-                <Image source={takeaway} style={styles.iconImage} />
-                <Text style={styles.iconTextRight}>Takeaway</Text>
-              </View>
+              <TouchableOpacity onPress={() => navigation.navigate('Signature')} style={styles.touchableIconContainer}>
+                <View style={styles.iconContainer}>
+                  <Image source={pickup} style={styles.iconImage} />
+                  <Text style={styles.iconTextRight}>Pickup</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Signature')} style={styles.touchableIconContainer}>
+                <View style={styles.iconContainer}>
+                  <Image source={takeaway} style={styles.iconImage} />
+                  <Text style={styles.iconTextRight}>Takeaway</Text>
+                </View>
+              </TouchableOpacity>
             </View>
             <View style={styles.iconRow}>
-              <View style={styles.iconContainerColumn}>
-                <Image source={foods} style={styles.iconImage} />
-                <Text style={styles.iconText}>Foods</Text>
-              </View>
-              <View style={styles.iconContainerColumn}>
-                <Image source={drinks} style={styles.iconImage} />
-                <Text style={styles.iconText}>Drinks</Text>
-              </View>
-              <View style={styles.iconContainerColumn}>
-                <Image source={pastries} style={styles.iconImage} />
-                <Text style={styles.iconText}>Pastries</Text>
-              </View>
+              <TouchableOpacity onPress={() => navigation.navigate('Food')} style={styles.touchableIconContainerColumn}>
+                <View style={styles.iconContainerColumn}>
+                  <Image source={foods} style={styles.iconImage} />
+                  <Text style={styles.iconText}>Foods</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Drink')} style={styles.touchableIconContainerColumn}>
+                <View style={styles.iconContainerColumn}>
+                  <Image source={drinks} style={styles.iconImage} />
+                  <Text style={styles.iconText}>Drinks</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Pastries')} style={styles.touchableIconContainerColumn}>
+                <View style={styles.iconContainerColumn}>
+                  <Image source={pastries} style={styles.iconImage} />
+                  <Text style={styles.iconText}>Pastries</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
           <Image source={About} style={styles.Aboutimage} />
@@ -187,6 +200,12 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  touchableIconContainer: { // Style untuk TouchableOpacity yang membungkus iconContainer
+    // Bisa tambahkan padding jika area sentuh dirasa kurang luas
+  },
+  touchableIconContainerColumn: { // Style untuk TouchableOpacity yang membungkus iconContainerColumn
+    // Bisa tambahkan padding jika area sentuh dirasa kurang luas
   },
   iconContainerColumn: {
     alignItems: 'center',
