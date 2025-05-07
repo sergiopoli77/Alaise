@@ -1,9 +1,11 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper'; // Import Swiper
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 import {Illustration, Illustration2, Illustration3} from '../../assets/images';
 
 const Start = () => {
+  const navigation = useNavigation(); // Dapatkan objek navigasi
   return (
     <View style={styles.container}>
       {/* Swiper untuk Gambar */}
@@ -31,10 +33,16 @@ const Start = () => {
 
         {/* Tombol LOGIN dan SIGN UP */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => navigation.navigate('SignIn')} // Navigasi ke SignIn
+          >
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.signupButton}>
+          <TouchableOpacity
+            style={styles.signupButton}
+            onPress={() => navigation.navigate('SignUp')} // Navigasi ke SignUp
+          >
             <Text style={styles.buttonText}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
