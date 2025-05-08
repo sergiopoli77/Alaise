@@ -34,22 +34,32 @@ const Checkout = () => {
   const route = useRoute<CheckoutScreenRouteProp>();
   const navigation = useNavigation();
   const [cartItems, setCartItems] = useState<CartItem[]>(initialMockCartItems);
+  // Log saat komponen render/re-render untuk melihat state cartItems awal
+  console.log('Checkout RENDER: cartItems state:', JSON.stringify(cartItems, null, 2));
 
   useEffect(() => {
-    if (route.params?.newItem) {
+    console.log('Checkout useEffect: route.params:', JSON.stringify(route.params, null, 2));
+    if (route.params?.newItem) {      
       const newItem = route.params.newItem;
       setCartItems(prevItems => {
         const existingItemIndex = prevItems.findIndex(item => item.id === newItem.id);
         if (existingItemIndex > -1) {
           const updatedItems = [...prevItems];
           updatedItems[existingItemIndex].quantity += newItem.quantity || 1;
+          console.log('Checkout useEffect: Updated item, new cartItems:', JSON.stringify(updatedItems, null, 2));
           return updatedItems;
         } else {
-          return [...prevItems, { ...newItem, quantity: newItem.quantity || 1 }];
+          const newItems = [...prevItems, { ...newItem, quantity: newItem.quantity || 1 }];
+          console.log('Checkout useEffect: Added new item, new cartItems:', JSON.stringify(newItems, null, 2));
+          return newItems;
         }
       });
+      // Setelah newItem diproses, bersihkan dari route.params
+      // untuk mencegah pemrosesan ulang jika komponen re-render atau mendapat fokus kembali
+      // dengan params yang sama.
+      navigation.setParams({ newItem: undefined } as never); // 'as never' untuk type safety jika params lain tidak ada
     }
-  }, [route.params?.newItem]);
+  }, [route.params?.newItem, navigation]); // Tambahkan navigation ke dependency array karena digunakan di setParams
 
   const calculateTotal = () => {
     return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -58,9 +68,10 @@ const Checkout = () => {
   const total = calculateTotal();
 
   const handlePaymentSelect = () => {
-    // Implementasi logika untuk memilih metode pembayaran
-    // Alert.alert("Pilih Pembayaran", "Fitur pilih pembayaran akan segera hadir!"); // Hapus atau komentari baris ini
-    navigation.navigate('Pembayaran', { totalAmount: total }); // Kirim total sebagai parameter
+    console.log('Checkout handlePaymentSelect: Tombol "Pilih Pembayaran" ditekan.');
+    console.log('Checkout handlePaymentSelect: Mengirim totalAmount:', total);
+    console.log('Checkout handlePaymentSelect: Mengirim cartItems:', JSON.stringify(cartItems, null, 2));
+    navigation.navigate('Pembayaran', { totalAmount: total, cartItems: cartItems }); // Kirim total dan cartItems
   };
 
   return (

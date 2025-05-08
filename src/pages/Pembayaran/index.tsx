@@ -41,9 +41,22 @@ type PembayaranScreenRouteProp = RouteProp<PembayaranRouteParams, 'Pembayaran'>;
 const Pembayaran = () => {
   const navigation = useNavigation();
 
+  console.log('Pembayaran RENDER: Komponen Pembayaran dirender.');
   const route = useRoute<PembayaranScreenRouteProp>();
+  // Log route.params in more detail
+  if (route.params) {
+    console.log('Pembayaran RENDER: route.params DITERIMA:', JSON.stringify(route.params, null, 2));
+    console.log('Pembayaran RENDER: route.params.cartItems ADA? :', route.params.hasOwnProperty('cartItems'));
+    console.log('Pembayaran RENDER: Tipe route.params.cartItems:', typeof route.params.cartItems);
+  } else {
+    console.log('Pembayaran RENDER: route.params adalah undefined');
+  }
+
   // Ambil totalAmount dan cartItems dari parameter route, default jika tidak ada
   const { totalAmount, cartItems } = route.params || { totalAmount: 0, cartItems: [] };
+
+  console.log('Pembayaran RENDER: totalAmount setelah destrukturisasi:', totalAmount);
+  console.log('Pembayaran RENDER: cartItems setelah destrukturisasi:', JSON.stringify(cartItems, null, 2));
 
   const [loading, setLoading] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
@@ -54,6 +67,7 @@ const Pembayaran = () => {
   };
 
   const handleConfirmAndPay = async () => {
+    console.log('Pembayaran handleConfirmAndPay: Tombol "Bayar Sekarang" ditekan. cartItems saat ini:', JSON.stringify(cartItems, null, 2));
     if (!auth.currentUser) {
       Alert.alert("Error", "Anda harus login untuk membuat pesanan.", [
         { text: "OK", onPress: () => navigation.navigate('SignIn' as never) }
@@ -89,23 +103,22 @@ const Pembayaran = () => {
       paymentMethod: selectedPaymentMethod || 'Belum Dipilih', // Simpan metode pembayaran
     };
 
-    if (metode === 'Bayar Sekarang') {
-      try {
-        await set(newOrderRef, orderData);
-        Alert.alert("Sukses", "Pesanan Anda telah berhasil dibuat!");
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 1,
-            routes: [{ name: 'Home' as never }, { name: 'Pesanan' as never }],
-          })
-        );
-      } catch (error) {
-        console.error("Error saving order to Firebase:", error);
-        Alert.alert("Error", "Gagal menyimpan pesanan. Silakan coba lagi.");
-      } finally {
-        setLoading(false);
+    // Logika penyimpanan ke Firebase, dijalankan karena fungsi ini dipanggil oleh tombol "Bayar Sekarang"
+    try {
+      await set(newOrderRef, orderData);
+      Alert.alert("Sukses", "Pesanan Anda telah berhasil dibuat!");
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [{ name: 'Home' as never }, { name: 'Pesanan' as never }],
+        })
+      );
+    } catch (error) {
+      console.error("Error saving order to Firebase:", error);
+      Alert.alert("Error", "Gagal menyimpan pesanan. Silakan coba lagi.");
+    } finally {
+      setLoading(false);
       }
-    }
   };
 
 
@@ -113,7 +126,7 @@ const Pembayaran = () => {
     <View style={styles.container}>
       <Header3
         title="Pembayaran"
-        onPress={() => navigation.navigate('Checkout')}
+        onPress={() => navigation.goBack()} // Diubah menjadi goBack()
       />
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -168,7 +181,7 @@ const Pembayaran = () => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={[styles.paymentButton, loading && styles.paymentButtonDisabled]}
-          onPress={() => handleConfirmAndPay('Bayar Sekarang')} // Memanggil fungsi baru
+          onPress={handleConfirmAndPay} // Tidak perlu mengirim argumen jika fungsi tidak menggunakannya
           disabled={loading}
         >
           {loading ? <ActivityIndicator color="#FFFFFF" /> : <Text style={styles.paymentButtonText}>Bayar Sekarang</Text>}
