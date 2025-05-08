@@ -59,9 +59,23 @@ const SignUp = () => {
 
     } catch (err) {
       const authError = err as AuthError;
-      const errorMessage = authError.message || 'Failed to create account. Please try again.';
-      setError(errorMessage);
-      Alert.alert("Sign Up Failed", errorMessage);
+      console.error('Error during sign up:', authError); // Tambahkan ini untuk melihat error detail di konsol
+
+      let friendlyMessage = 'Failed to create account. Please try again.';
+      if (authError.code === 'auth/email-already-in-use') {
+        friendlyMessage = 'This email address is already in use by another account.';
+      } else if (authError.code === 'auth/invalid-email') {
+        friendlyMessage = 'The email address is not valid. Please enter a correct email format.';
+      } else if (authError.code === 'auth/weak-password') {
+        friendlyMessage = 'The password is too weak. Please choose a stronger password (at least 6 characters).';
+      } else if (authError.code === 'auth/operation-not-allowed') {
+        friendlyMessage = 'Email/password accounts are not enabled. Please contact support.';
+      } else {
+        // Untuk error lain, bisa tampilkan pesan default Firebase atau pesan generik
+        friendlyMessage = authError.message || 'An unexpected error occurred. Please try again.';
+      }
+      setError(friendlyMessage);
+      Alert.alert("Sign Up Failed", friendlyMessage);
     } finally {
       setLoading(false);
     }
