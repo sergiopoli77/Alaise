@@ -10,7 +10,6 @@ import Pastries from './src/pages/Pastries'
 import Checkout from './src/pages/Checkout'
 import Pembayaran from './src/pages/Pembayaran'
 import Pesanan from './src/pages/Pesanan'
-import DetailPesanan from './src/pages/DetailPesanan'
 import Profile from './src/pages/Profile'
 import ProfileSaya from './src/pages/ProfilSaya' 
 import TentangKami from './src/pages/TentangKami'
@@ -86,11 +85,6 @@ const App = () => {
           <Stack.Screen
             name="Pesanan"
             component={Pesanan}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="DetailPesanan"
-            component={DetailPesanan}
             options={{headerShown: false}}
           />
           <Stack.Screen
