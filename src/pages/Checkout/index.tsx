@@ -5,6 +5,7 @@ import { Button2 } from '../../components/atoms';
 import Gap from '../../components/atoms/Gap';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 
+//DONE
 // Definisikan tipe untuk item keranjang
 interface CartItem {
   id: string;
