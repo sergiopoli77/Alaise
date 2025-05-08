@@ -15,7 +15,7 @@ const Pesanan = () => {
   return (
     <View style={styles.container}>
       <HeaderProfile />
-      <Text style={styles.text}>Pesanan</Text>
+      <Text style={styles.text}>Pesanan Saya</Text>
       <Gap height={20} />
         <View style={styles.contentWrapper}>
         </View>

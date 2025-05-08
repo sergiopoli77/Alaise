@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-Bold',
     color: '#333333',
     paddingHorizontal: 16,
     paddingTop: 16,
@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderTopWidth: 1,
     borderTopColor: '#EEEEEE',
+    
   },
   priceSection: {
     flex: 1,
@@ -213,6 +214,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Poppins-regular',
     color: '#000000',
+    marginLeft: 16,
   },
   paymentButton: {
     backgroundColor: '#BB5F09',

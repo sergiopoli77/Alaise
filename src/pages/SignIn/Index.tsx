@@ -36,11 +36,11 @@ const SignIn = () => {
       if (authError.code === 'auth/user-not-found' || 
           authError.code === 'auth/wrong-password' || 
           authError.code === 'auth/invalid-credential') {
-        friendlyMessage = 'Invalid email or password. Please try again.';
+        friendlyMessage = 'Invalid email or password. Please try again';
       } else if (authError.code === 'auth/invalid-email') {
-        friendlyMessage = 'The email address is not valid.';
+        friendlyMessage = 'The email address is not valid';
       } else if (authError.code === 'auth/user-disabled') {
-        friendlyMessage = 'This user account has been disabled.';
+        friendlyMessage = 'This user account has been disabled';
       }
       // Tambahkan penanganan error lain jika perlu
       setError(friendlyMessage);
