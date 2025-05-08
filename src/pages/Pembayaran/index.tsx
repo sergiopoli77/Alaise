@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,29 +7,107 @@ import {
   ScrollView,
   Alert,
   Image,
+  ActivityIndicator, // Ditambahkan
+  ImageSourcePropType, // Ditambahkan
 } from 'react-native';
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native'; // Import useRoute and RouteProp
+import { useNavigation, useRoute, RouteProp, CommonActions } from '@react-navigation/native'; // Import useRoute and RouteProp
 import { Header3 } from '../../components/molecules';
 import {QRIS, Mandiri, BNI, BCA, BRI } from '../../assets/icon';
+import { auth, db } from '../../config/Firebase'; // Ditambahkan
+import { ref as databaseRef, push, serverTimestamp, set } from 'firebase/database'; // Ditambahkan
+
+// Definisikan tipe untuk item keranjang (konsisten dengan Checkout.tsx)
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: ImageSourcePropType;
+  description?: string;
+  imageName?: string;
+}
 
 // Definisikan tipe untuk parameter route
-type PembayaranRouteParams = { Pembayaran: { totalAmount?: number } };
+
+type PembayaranRouteParams = {
+  Pembayaran: {
+    totalAmount: number; // Diubah menjadi wajib
+    cartItems: CartItem[]; // Ditambahkan cartItems
+  };
+};
+
+
 type PembayaranScreenRouteProp = RouteProp<PembayaranRouteParams, 'Pembayaran'>;
 const Pembayaran = () => {
   const navigation = useNavigation();
 
-  const handlePaymentSelect = (metode) => {
+  const route = useRoute<PembayaranScreenRouteProp>();
+  // Ambil totalAmount dan cartItems dari parameter route, default jika tidak ada
+  const { totalAmount, cartItems } = route.params || { totalAmount: 0, cartItems: [] };
+
+  const [loading, setLoading] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
+
+  const handlePaymentMethodSelection = (metode: string) => {
+    setSelectedPaymentMethod(metode);
+    // Alert.alert('Pembayaran', `Metode dipilih: ${metode}`); // Bisa di-uncomment jika perlu untuk debugging
+  };
+
+  const handleConfirmAndPay = async () => {
+    if (!auth.currentUser) {
+      Alert.alert("Error", "Anda harus login untuk membuat pesanan.", [
+        { text: "OK", onPress: () => navigation.navigate('SignIn' as never) }
+      ]);
+      return;
+    }
+
+    if (!cartItems || cartItems.length === 0) {
+      Alert.alert("Error", "Keranjang Anda kosong.", [
+        { text: "OK", onPress: () => navigation.goBack() }
+      ]);
+      return;
+    }
+
+    // Opsional: Validasi apakah metode pembayaran sudah dipilih
+    // if (!selectedPaymentMethod) {
+    //   Alert.alert("Info", "Silakan pilih metode pembayaran terlebih dahulu.");
+    //   return;
+    // }
+
+    setLoading(true);
+    const userId = auth.currentUser.uid;
+    const ordersRefPath = `orders/${userId}`;
+    const newOrderRef = push(databaseRef(db, ordersRefPath));
+
+    const orderData = {
+      items: cartItems,
+      totalAmount: totalAmount,
+      orderDate: serverTimestamp(),
+      status: 'pending', // Status awal
+      orderId: newOrderRef.key,
+      userId: userId,
+      paymentMethod: selectedPaymentMethod || 'Belum Dipilih', // Simpan metode pembayaran
+    };
+
     if (metode === 'Bayar Sekarang') {
-      // Navigate to Pesanan screen when "Bayar Sekarang" is pressed
-      navigation.navigate('Pesanan');
-    } else {
-      Alert.alert('Pembayaran', `Metode dipilih: ${metode}`);
+      try {
+        await set(newOrderRef, orderData);
+        Alert.alert("Sukses", "Pesanan Anda telah berhasil dibuat!");
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 1,
+            routes: [{ name: 'Home' as never }, { name: 'Pesanan' as never }],
+          })
+        );
+      } catch (error) {
+        console.error("Error saving order to Firebase:", error);
+        Alert.alert("Error", "Gagal menyimpan pesanan. Silakan coba lagi.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
-  const route = useRoute<PembayaranScreenRouteProp>();
-  // Ambil totalAmount dari parameter route, default ke 0 jika tidak ada
-  const total = route.params?.totalAmount || 0;
 
   return (
     <View style={styles.container}>
@@ -39,59 +117,61 @@ const Pembayaran = () => {
       />
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.totalText}>Rp. {total.toLocaleString('id-ID')}</Text>
+        <Text style={styles.totalText}>Rp. {totalAmount.toLocaleString('id-ID')}</Text>
 
         <View style={styles.paymentMethodsContainer}>
           <Text style={styles.sectionTitle}>Metode Pembayaran</Text>
 
           <TouchableOpacity
-            style={styles.paymentItem}
-            onPress={() => handlePaymentSelect('QRIS')}
+            style={[styles.paymentItem, selectedPaymentMethod === 'QRIS' && styles.selectedPaymentItem]}
+            onPress={() => handlePaymentMethodSelection('QRIS')}
           >
             <Image source={QRIS} style={styles.icon} />
             <Text style={styles.paymentText}>QRIS</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.paymentItem}
-            onPress={() => handlePaymentSelect('Mandiri')}
+            style={[styles.paymentItem, selectedPaymentMethod === 'Mandiri' && styles.selectedPaymentItem]}
+            onPress={() => handlePaymentMethodSelection('Mandiri')}
           >
             <Image source={Mandiri} style={styles.icon} />
             <Text style={styles.paymentText}>Mandiri</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.paymentItem}
-            onPress={() => handlePaymentSelect('BCA')}
+            style={[styles.paymentItem, selectedPaymentMethod === 'BCA' && styles.selectedPaymentItem]}
+            onPress={() => handlePaymentMethodSelection('BCA')}
           >
             <Image source={BCA} style={styles.icon} />
             <Text style={styles.paymentText}>BCA</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.paymentItem}
-            onPress={() => handlePaymentSelect('BRI')}
+            style={[styles.paymentItem, selectedPaymentMethod === 'BRI' && styles.selectedPaymentItem]}
+            onPress={() => handlePaymentMethodSelection('BRI')}
           >
             <Image source={BRI} style={styles.icon} />
             <Text style={styles.paymentText}>BRI</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.paymentItem}
-            onPress={() => handlePaymentSelect('BNI')}
+             style={[styles.paymentItem, selectedPaymentMethod === 'BNI' && styles.selectedPaymentItem]}
+             onPress={() => handlePaymentMethodSelection('BNI')}
           >
             <Image source={BNI} style={styles.icon} />
             <Text style={styles.paymentText}>BNI</Text>
           </TouchableOpacity>
         </View>
+        
       </ScrollView>
 
       <View style={styles.footer}>
         <TouchableOpacity
-          style={styles.paymentButton}
-          onPress={() => handlePaymentSelect('Bayar Sekarang')}
+          style={[styles.paymentButton, loading && styles.paymentButtonDisabled]}
+          onPress={() => handleConfirmAndPay('Bayar Sekarang')} // Memanggil fungsi baru
+          disabled={loading}
         >
-          <Text style={styles.paymentButtonText}>Bayar Sekarang</Text>
+          {loading ? <ActivityIndicator color="#FFFFFF" /> : <Text style={styles.paymentButtonText}>Bayar Sekarang</Text>}
         </TouchableOpacity>
       </View>
     </View>
@@ -130,6 +210,11 @@ const styles = StyleSheet.create({
   paymentItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingVertical: 10, // Sedikit padding untuk tampilan lebih baik
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#EEE', // Border default
     marginBottom: 12,
   },
   icon: {
@@ -142,6 +227,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Poppins-Bold',
     color: '#000000',
+  },
+  selectedPaymentItem: { // Style untuk item yang dipilih
+    borderColor: '#BB5F09', // Warna border sesuai tombol
+    backgroundColor: '#FFF5EE', // Warna latar belakang lembut
   },
   footer: {
     flexDirection: 'row',
